@@ -3,509 +3,881 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><title>ZenithFX — Trade The World | Africa's Premier Trading Platform</title>
-<meta name="description" content="ZenithFX is Africa's leading online trading platform. Trade Synthetic Indices, Forex, Crypto, Gold, and more. Deposit via M-Pesa. Start with a free demo account.">
-<meta property="og:title" content="ZenithFX — Trade The World">
-<meta property="og:description" content="Trade Synthetic Indices, Forex, Crypto, Commodities and more. M-Pesa deposits. Start free.">
-<meta property="og:type" content="website">
+<title>ZenithFX — Trade The World | Africa's #1 Trading Platform</title>
+<meta name="description" content="Trade Synthetic Indices, Forex, Crypto, Gold and more. Deposit with M-Pesa instantly. Start with a free $10,000 demo account.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg0:#05080f;--bg1:#0b1120;--bg2:#111827;--bg3:#162035;--bg4:#1c2a40;
-  --z:#00e5b4;--z2:#00b8ff;--z3:#7c5cfc;--red:#ff4d6d;--green:#00d68f;
+  --bg0:#04070d;--bg1:#080e1a;--bg2:#0d1526;--bg3:#111d33;--bg4:#162340;
+  --z:#00f0be;--z2:#00c4ff;--z3:#8b5cf6;--green:#00e676;--red:#ff4569;
   --yellow:#fbbf24;--orange:#f97316;
-  --t0:#f0f4ff;--t1:#c8d4ec;--t2:#7a90b4;--t3:#3f5070;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.14);
+  --t0:#ffffff;--t1:#dde8ff;--t2:#8fa8cc;--t3:#3d5475;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.15);
   --font:'Syne',sans-serif;--body:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  --glow-z:0 0 40px rgba(0,240,190,.25);
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--bg0);color:var(--t0);overflow-x:hidden}
+body{font-family:var(--body);background:var(--bg0);color:var(--t0);overflow-x:hidden;line-height:1.6}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;font-family:var(--body)}
+img{max-width:100%;display:block}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg1)}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:68px;display:flex;align-items:center;justify-content:space-between;transition:.3s;border-bottom:1px solid transparent}
-nav.scrolled{background:rgba(5,8,15,.92);border-bottom-color:var(--border);backdrop-filter:blur(12px)}
+/* ─── NAVBAR ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  padding:0 6%;height:70px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .3s ease;
+}
+nav.solid{
+  background:rgba(4,7,13,.92);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(16px);
+}
 .nav-logo{display:flex;align-items:center;gap:11px}
-.nav-logo-icon{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--z),var(--z3));display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:17px;font-weight:800;color:#000}
-.nav-logo-name{font-family:var(--font);font-size:20px;font-weight:800}
-.nav-logo-name span{color:var(--z)}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-links a{font-size:14px;font-weight:500;color:var(--t2);transition:.18s}
+.nav-logo-icon{
+  width:38px;height:38px;border-radius:11px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--z),var(--z3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);font-size:18px;font-weight:800;color:#000;
+  box-shadow:0 4px 14px rgba(0,240,190,.4);
+}
+.nav-logo-text{font-family:var(--font);font-size:21px;font-weight:800;letter-spacing:-.5px}
+.nav-logo-text span{color:var(--z)}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{
+  font-size:14px;font-weight:500;color:var(--t2);
+  transition:.18s;position:relative;padding-bottom:2px;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:0;left:0;width:0;height:1px;
+  background:var(--z);transition:.2s;
+}
 .nav-links a:hover{color:var(--t0)}
-.nav-ctas{display:flex;align-items:center;gap:10px}
-.btn-outline-sm{padding:8px 18px;border-radius:8px;border:1px solid var(--border2);background:transparent;color:var(--t1);font-size:13px;font-weight:600;transition:.18s}
-.btn-outline-sm:hover{border-color:var(--z);color:var(--z)}
-.btn-z-sm{padding:8px 18px;border-radius:8px;background:var(--z);color:#000;font-size:13px;font-weight:700;border:none;transition:.18s;font-family:var(--font)}
-.btn-z-sm:hover{background:#00ccaa;transform:translateY(-1px)}
-.hamburger{display:none;background:none;border:none;color:var(--t0);font-size:22px;padding:4px}
-.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(5,8,15,.97);border-bottom:1px solid var(--border);padding:20px 5%;z-index:99;backdrop-filter:blur(12px)}
-.mobile-menu.open{display:block}
-.mobile-menu a{display:block;padding:12px 0;font-size:15px;font-weight:500;color:var(--t2);border-bottom:1px solid var(--border)}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu-ctas{display:flex;gap:10px;margin-top:16px}
-.mobile-menu-ctas button{flex:1}
+.nav-links a:hover::after{width:100%}
+.nav-btns{display:flex;align-items:center;gap:10px}
+.btn-nav-ghost{
+  padding:9px 20px;border-radius:9px;
+  border:1px solid var(--border2);background:transparent;
+  color:var(--t1);font-size:13px;font-weight:600;transition:.18s;
+}
+.btn-nav-ghost:hover{border-color:var(--z);color:var(--z);background:rgba(0,240,190,.06)}
+.btn-nav-primary{
+  padding:9px 22px;border-radius:9px;
+  background:var(--z);color:#000;
+  font-size:13px;font-weight:700;border:none;transition:.2s;
+  font-family:var(--font);letter-spacing:.2px;
+  box-shadow:0 4px 14px rgba(0,240,190,.35);
+}
+.btn-nav-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,240,190,.45);background:#00d9a8}
+.hamburger{display:none;background:none;border:none;color:var(--t0);font-size:23px;padding:4px}
+.mob-menu{
+  display:none;position:fixed;top:70px;left:0;right:0;
+  background:rgba(4,7,13,.97);border-bottom:1px solid var(--border);
+  padding:22px 6%;z-index:998;backdrop-filter:blur(16px);
+}
+.mob-menu.show{display:block}
+.mob-menu a{display:block;padding:13px 0;font-size:15px;font-weight:500;color:var(--t2);border-bottom:1px solid var(--border)}
+.mob-ctas{display:flex;gap:10px;margin-top:18px}
+.mob-ctas button{flex:1}
 
-/* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:100px 5% 60px}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% -5%,rgba(0,229,180,.14) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 80% 60%,rgba(124,92,252,.1) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 20% 80%,rgba(0,184,255,.08) 0%,transparent 60%)}
-.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 80% at 50% 0%,#000 0%,transparent 80%)}
-.hero-content{position:relative;z-index:2;text-align:center;max-width:860px;margin:0 auto}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,229,180,.1);border:1px solid rgba(0,229,180,.25);border-radius:50px;padding:7px 16px;font-size:12px;font-weight:600;color:var(--z);margin-bottom:28px;letter-spacing:.3px}
-.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--z);animation:pulse 1.5s infinite}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,229,180,.5)}70%{box-shadow:0 0 0 8px rgba(0,229,180,0)}}
-.hero-title{font-family:var(--font);font-size:clamp(42px,7vw,82px);font-weight:800;line-height:1.06;letter-spacing:-2px;margin-bottom:24px}
-.hero-title .line2{background:linear-gradient(135deg,var(--z),var(--z2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--t2);line-height:1.7;max-width:560px;margin:0 auto 38px;font-weight:400}
-.hero-ctas{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:52px}
-.btn-hero-primary{padding:15px 32px;border-radius:12px;background:linear-gradient(135deg,var(--z),#00c49a);color:#000;font-family:var(--font);font-size:15px;font-weight:800;border:none;transition:.22s;box-shadow:0 8px 30px rgba(0,229,180,.35);letter-spacing:.3px}
-.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 14px 40px rgba(0,229,180,.45)}
-.btn-hero-secondary{padding:15px 32px;border-radius:12px;background:transparent;border:1px solid var(--border2);color:var(--t1);font-family:var(--font);font-size:15px;font-weight:700;transition:.22s}
-.btn-hero-secondary:hover{border-color:var(--z);color:var(--z);background:rgba(0,229,180,.06)}
-.hero-stats{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat-val{font-family:var(--font);font-size:28px;font-weight:800;color:var(--t0);line-height:1}
-.hero-stat-val span{color:var(--z)}
-.hero-stat-lbl{font-size:12px;color:var(--t2);margin-top:5px;letter-spacing:.3px}
-.hero-stat-divider{width:1px;height:40px;background:var(--border)}
+/* ─── HERO ─── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;padding:110px 6% 80px;
+}
+/* HD background image from Unsplash - trading/financial theme */
+.hero-bg-img{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=1920&q=85&auto=format&fit=crop');
+  background-size:cover;background-position:center 30%;
+  filter:brightness(.18) saturate(1.2);
+  z-index:0;
+}
+/* Overlay gradients for readability */
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(180deg, rgba(4,7,13,.5) 0%, rgba(4,7,13,.1) 30%, rgba(4,7,13,.2) 60%, rgba(4,7,13,.95) 100%),
+    radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,240,190,.18) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 50% at 80% 50%, rgba(139,92,246,.12) 0%, transparent 60%);
+}
+/* Animated grid lines */
+.hero-grid{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    linear-gradient(rgba(0,240,190,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,240,190,.04) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 85% 70% at 50% 10%,#000 0%,transparent 80%);
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;max-width:900px;margin:0 auto;
+  width:100%;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  background:rgba(0,240,190,.1);border:1px solid rgba(0,240,190,.28);
+  border-radius:60px;padding:8px 18px;
+  font-size:12px;font-weight:700;color:var(--z);
+  letter-spacing:.8px;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero-eyebrow-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--z);
+  animation:blink 1.6s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,240,190,.6)}60%{box-shadow:0 0 0 8px rgba(0,240,190,0)}}
+.hero-h1{
+  font-family:var(--font);
+  font-size:clamp(46px,7.5vw,90px);
+  font-weight:800;line-height:1.04;
+  letter-spacing:-2.5px;
+  margin-bottom:22px;
+  color:#fff;
+  text-shadow:0 2px 30px rgba(0,0,0,.5);
+}
+.hero-h1 .accent{
+  background:linear-gradient(130deg,var(--z) 0%,var(--z2) 60%,var(--z3) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(16px,2.2vw,20px);
+  color:rgba(221,232,255,.82);
+  max-width:620px;margin:0 auto 42px;
+  font-weight:400;line-height:1.75;
+  text-shadow:0 1px 10px rgba(0,0,0,.4);
+}
+.hero-ctas{
+  display:flex;align-items:center;justify-content:center;
+  gap:14px;flex-wrap:wrap;margin-bottom:56px;
+}
+.btn-cta-main{
+  padding:16px 36px;border-radius:12px;
+  background:linear-gradient(135deg,var(--z),#00c49a);
+  color:#000;font-family:var(--font);font-size:16px;font-weight:800;
+  border:none;transition:.25s;
+  box-shadow:0 8px 32px rgba(0,240,190,.4),0 2px 8px rgba(0,0,0,.3);
+  letter-spacing:.2px;
+}
+.btn-cta-main:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(0,240,190,.5)}
+.btn-cta-main:active{transform:translateY(0)}
+.btn-cta-ghost{
+  padding:16px 36px;border-radius:12px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-family:var(--font);font-size:16px;font-weight:700;
+  transition:.25s;backdrop-filter:blur(6px);
+}
+.btn-cta-ghost:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.35);transform:translateY(-2px)}
 
-/* FLOATING CHART CARD */
-.hero-visual{position:relative;margin-top:70px;padding:0 5%}
-.chart-card{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);max-width:900px;margin:0 auto;position:relative}
-.chart-card-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--bg1)}
-.chart-card-dots{display:flex;gap:7px}
-.chart-card-dot{width:12px;height:12px;border-radius:50%}
-.chart-card-title{font-family:var(--font);font-size:14px;font-weight:700;display:flex;align-items:center;gap:10px}
-.chart-live-badge{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--z);font-weight:700;letter-spacing:.5px;background:rgba(0,229,180,.1);padding:3px 9px;border-radius:20px;border:1px solid rgba(0,229,180,.2)}
-.chart-live-dot{width:5px;height:5px;border-radius:50%;background:var(--z);animation:pulse 1.2s infinite}
-#hero-canvas{display:block;width:100%;height:220px;background:var(--bg0)}
-.chart-card-footer{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:var(--bg1);flex-wrap:wrap;gap:10px}
-.chart-footer-stat{text-align:center}
-.cfs-lbl{font-size:9px;color:var(--t2);text-transform:uppercase;letter-spacing:.8px}
-.cfs-val{font-family:var(--mono);font-size:14px;font-weight:500;margin-top:2px}
+/* Hero stats bar */
+.hero-stats{
+  display:inline-flex;align-items:center;justify-content:center;
+  gap:0;background:rgba(13,21,38,.75);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;padding:18px 32px;
+  backdrop-filter:blur(10px);flex-wrap:wrap;gap:0;
+}
+.hstat{text-align:center;padding:0 28px}
+.hstat+.hstat{border-left:1px solid rgba(255,255,255,.08)}
+.hstat-val{
+  font-family:var(--font);font-size:28px;font-weight:800;
+  color:#fff;line-height:1;
+}
+.hstat-val em{color:var(--z);font-style:normal}
+.hstat-lbl{font-size:11px;color:var(--t2);margin-top:5px;letter-spacing:.5px;text-transform:uppercase}
 
-/* TICKER STRIP */
-.ticker-strip{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;overflow:hidden}
-.ticker-track{display:flex;gap:30px;animation:ticker-scroll 40s linear infinite;white-space:nowrap}
-@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ticker-item{display:flex;align-items:center;gap:8px;font-size:12px;flex-shrink:0}
-.ti-sym{font-family:var(--font);font-weight:700;color:var(--t1)}
-.ti-px{font-family:var(--mono);color:var(--t0)}
-.ti-chg{font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px}
-.ti-up{background:rgba(0,214,143,.12);color:var(--green)}
-.ti-dn{background:rgba(255,77,109,.12);color:var(--red)}
+/* ─── TICKER STRIP ─── */
+.ticker-strip{
+  background:var(--bg1);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:13px 0;overflow:hidden;
+}
+.ticker-track{display:flex;gap:32px;animation:scroll-left 38s linear infinite;white-space:nowrap}
+@keyframes scroll-left{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.t-item{display:flex;align-items:center;gap:8px;flex-shrink:0;padding:0 4px}
+.t-sym{font-family:var(--font);font-size:12px;font-weight:700;color:var(--t1)}
+.t-px{font-family:var(--mono);font-size:12px;color:var(--t0)}
+.t-up{font-size:10px;font-weight:700;color:var(--green);background:rgba(0,230,118,.1);padding:2px 7px;border-radius:5px}
+.t-dn{font-size:10px;font-weight:700;color:var(--red);background:rgba(255,69,105,.1);padding:2px 7px;border-radius:5px}
 
-/* SECTIONS */
-section{padding:100px 5%}
-.section-badge{display:inline-block;background:rgba(0,229,180,.08);border:1px solid rgba(0,229,180,.2);color:var(--z);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:16px}
-.section-title{font-family:var(--font);font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:16px}
-.section-sub{font-size:17px;color:var(--t2);line-height:1.7;max-width:560px}
+/* ─── CHART PREVIEW CARD ─── */
+.hero-chart-section{
+  background:linear-gradient(180deg,var(--bg0) 0%,var(--bg1) 100%);
+  padding:0 6% 80px;
+}
+.chart-preview-card{
+  max-width:960px;margin:0 auto;
+  background:var(--bg2);
+  border:1px solid var(--border2);
+  border-radius:22px;overflow:hidden;
+  box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(0,240,190,.08),var(--glow-z);
+}
+.cpc-titlebar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;background:var(--bg1);border-bottom:1px solid var(--border);
+}
+.cpc-dots{display:flex;gap:7px}
+.cpc-dot{width:12px;height:12px;border-radius:50%}
+.cpc-info{display:flex;align-items:center;gap:12px}
+.cpc-name{font-family:var(--font);font-size:14px;font-weight:700}
+.cpc-live{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(0,240,190,.1);border:1px solid rgba(0,240,190,.25);
+  border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;color:var(--z);
+}
+.cpc-live-dot{width:5px;height:5px;border-radius:50%;background:var(--z);animation:blink 1.4s infinite}
+.cpc-price{font-family:var(--mono);font-size:20px;font-weight:500;color:var(--z)}
+#preview-canvas{display:block;width:100%;height:240px;background:var(--bg0)}
+.cpc-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;background:var(--bg1);flex-wrap:wrap;gap:12px;
+}
+.cpc-stat{text-align:center}
+.cpc-stat-l{font-size:9px;color:var(--t2);text-transform:uppercase;letter-spacing:.7px}
+.cpc-stat-v{font-family:var(--mono);font-size:14px;font-weight:500;margin-top:2px}
+.cpc-trade-btns{display:flex;gap:10px}
+.btn-rise{
+  padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,#00f0be,#00b894);
+  color:#000;font-family:var(--font);font-size:13px;font-weight:800;
+  border:none;cursor:pointer;transition:.18s;
+  box-shadow:0 4px 14px rgba(0,240,190,.35);
+}
+.btn-rise:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,240,190,.5)}
+.btn-fall{
+  padding:10px 24px;border-radius:10px;
+  background:linear-gradient(135deg,#ff4569,#cc2244);
+  color:#fff;font-family:var(--font);font-size:13px;font-weight:800;
+  border:none;cursor:pointer;transition:.18s;
+  box-shadow:0 4px 14px rgba(255,69,105,.35);
+}
+.btn-fall:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,69,105,.5)}
 
-/* FEATURES */
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:60px}
-.feature-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:28px;transition:.22s;position:relative;overflow:hidden}
-.feature-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--z),transparent);opacity:0;transition:.22s}
-.feature-card:hover{border-color:rgba(0,229,180,.25);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.35)}
-.feature-card:hover::before{opacity:1}
-.feature-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
-.feature-title{font-family:var(--font);font-size:18px;font-weight:700;margin-bottom:8px}
-.feature-text{font-size:14px;color:var(--t2);line-height:1.7}
-.feature-tag{display:inline-block;margin-top:14px;font-size:10px;font-weight:700;color:var(--z);background:rgba(0,229,180,.08);padding:3px 10px;border-radius:12px;letter-spacing:.5px}
+/* ─── SECTIONS ─── */
+section{padding:90px 6%}
+.section-eyebrow{
+  display:inline-block;
+  background:rgba(0,240,190,.08);border:1px solid rgba(0,240,190,.2);
+  color:var(--z);font-size:11px;font-weight:700;
+  letter-spacing:1px;text-transform:uppercase;
+  padding:5px 16px;border-radius:20px;margin-bottom:16px;
+}
+.section-title{
+  font-family:var(--font);
+  font-size:clamp(28px,4vw,50px);
+  font-weight:800;line-height:1.1;letter-spacing:-1.2px;
+  margin-bottom:16px;color:var(--t0);
+}
+.section-sub{
+  font-size:17px;color:var(--t2);line-height:1.75;
+  max-width:560px;
+}
+.tc{text-align:center}
+.tc .section-sub{margin:0 auto}
 
-/* MARKETS SECTION */
-.markets-section{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.markets-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
-.mk-tab{padding:8px 20px;border-radius:50px;border:1px solid var(--border2);background:transparent;color:var(--t2);font-size:13px;font-weight:600;cursor:pointer;transition:.18s;font-family:var(--body)}
-.mk-tab.active,.mk-tab:hover{background:var(--z);border-color:var(--z);color:#000}
-.markets-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.market-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:.18s}
-.market-card:hover{border-color:rgba(0,229,180,.3);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.3)}
-.mc-icon{font-size:22px;margin-bottom:8px}
-.mc-id{font-family:var(--font);font-size:13px;font-weight:700;margin-bottom:2px}
-.mc-name{font-size:10px;color:var(--t2);margin-bottom:8px}
-.mc-price{font-family:var(--mono);font-size:14px;font-weight:500;color:var(--t0)}
-.mc-chg{font-size:10px;font-weight:700;margin-top:3px}
-.mc-chg.up{color:var(--green)}.mc-chg.dn{color:var(--red)}
+/* ─── FEATURES ─── */
+.features-bg{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.features-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:20px;margin-top:52px;
+}
+.feat-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;padding:30px;
+  transition:.25s;position:relative;overflow:hidden;
+}
+.feat-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--z),transparent);
+  transform:scaleX(0);transition:.3s;
+}
+.feat-card:hover{border-color:rgba(0,240,190,.3);transform:translateY(-5px);box-shadow:0 20px 60px rgba(0,0,0,.4),var(--glow-z)}
+.feat-card:hover::after{transform:scaleX(1)}
+.feat-icon-wrap{
+  width:54px;height:54px;border-radius:15px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;margin-bottom:20px;
+}
+.feat-title{font-family:var(--font);font-size:19px;font-weight:700;margin-bottom:10px;color:var(--t0)}
+.feat-text{font-size:14px;color:var(--t2);line-height:1.75}
+.feat-pill{
+  display:inline-block;margin-top:16px;
+  font-size:10px;font-weight:700;color:var(--z);
+  background:rgba(0,240,190,.08);padding:3px 11px;
+  border-radius:20px;letter-spacing:.5px;text-transform:uppercase;
+}
 
-/* MPESA SECTION */
-.mpesa-section{background:linear-gradient(135deg,rgba(0,229,180,.06) 0%,rgba(124,92,252,.04) 100%)}
-.mpesa-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1100px;margin:0 auto}
-.mpesa-steps{display:flex;flex-direction:column;gap:22px;margin-top:36px}
-.mpesa-step{display:flex;align-items:flex-start;gap:16px}
-.ms-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--z),var(--z2));display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:14px;font-weight:800;color:#000;flex-shrink:0}
-.ms-info h4{font-family:var(--font);font-size:15px;font-weight:700;margin-bottom:4px}
-.ms-info p{font-size:13px;color:var(--t2);line-height:1.6}
-.mpesa-card{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.mpesa-card-header{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-.mpesa-logo{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#00c853,#00e676);display:flex;align-items:center;justify-content:center;font-size:22px}
-.mpesa-form-row{margin-bottom:14px}
-.mpesa-lbl{font-size:11px;font-weight:700;color:var(--t2);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.5px}
-.mpesa-input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:11px 14px;color:var(--t0);font-size:14px;outline:none;transition:.18s;font-family:var(--body)}
-.mpesa-input:focus{border-color:var(--z);box-shadow:0 0 0 3px rgba(0,229,180,.1)}
-.mpesa-amounts{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-.ma-btn{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--t2);font-size:12px;font-weight:600;cursor:pointer;transition:.15s;font-family:var(--mono)}
-.ma-btn:hover{border-color:var(--z);color:var(--z)}
-.mpesa-submit{width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#00c853,#00e676);color:#000;font-family:var(--font);font-size:15px;font-weight:800;border:none;cursor:pointer;transition:.22s;letter-spacing:.3px}
-.mpesa-submit:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,200,83,.4)}
-.mpesa-note{font-size:11px;color:var(--t3);text-align:center;margin-top:10px}
-.conv-display{font-size:12px;color:var(--z);margin-top:4px;font-family:var(--mono)}
+/* ─── MARKETS ─── */
+.mk-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.mk-btn{
+  padding:9px 22px;border-radius:50px;
+  border:1px solid var(--border2);background:transparent;
+  color:var(--t2);font-size:13px;font-weight:600;
+  cursor:pointer;transition:.18s;font-family:var(--body);
+}
+.mk-btn.on,.mk-btn:hover{background:var(--z);border-color:var(--z);color:#000}
+.mk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:13px}
+.mkc{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:15px;padding:18px;cursor:pointer;transition:.22s;
+}
+.mkc:hover{border-color:rgba(0,240,190,.35);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.35),var(--glow-z)}
+.mkc-icon{font-size:24px;margin-bottom:10px}
+.mkc-id{font-family:var(--font);font-size:13px;font-weight:800;margin-bottom:2px}
+.mkc-name{font-size:10px;color:var(--t2);margin-bottom:10px}
+.mkc-price{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--t0)}
+.mkc-chg{font-size:10px;font-weight:700;margin-top:4px}
+.up{color:var(--green)}.dn{color:var(--red)}
 
-/* HOW IT WORKS */
+/* ─── MPESA SECTION ─── */
+.mpesa-bg{
+  background:linear-gradient(135deg,rgba(0,240,190,.05) 0%,rgba(139,92,246,.05) 100%);
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.mpesa-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;align-items:center;max-width:1080px;margin:0 auto;
+}
+.mpesa-steps{display:flex;flex-direction:column;gap:24px;margin-top:36px}
+.mp-step{display:flex;align-items:flex-start;gap:16px}
+.mp-num{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--z),var(--z2));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);font-size:15px;font-weight:800;color:#000;
+  box-shadow:0 4px 14px rgba(0,240,190,.35);
+}
+.mp-step h4{font-family:var(--font);font-size:16px;font-weight:700;margin-bottom:4px;color:var(--t0)}
+.mp-step p{font-size:13px;color:var(--t2);line-height:1.65}
+.mp-badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:28px}
+.mp-badge{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.2);
+  border-radius:9px;padding:8px 14px;font-size:12px;font-weight:600;color:var(--green);
+}
+.mpesa-form-card{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:22px;padding:30px;
+  box-shadow:0 24px 70px rgba(0,0,0,.35),var(--glow-z);
+}
+.mfc-header{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.mfc-logo{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,#00c853,#00e676);
+  display:flex;align-items:center;justify-content:center;font-size:24px;
+  box-shadow:0 4px 14px rgba(0,200,83,.35);
+}
+.mfc-title{font-family:var(--font);font-size:17px;font-weight:800}
+.mfc-sub{font-size:12px;color:var(--t2);margin-top:2px}
+.form-row{margin-bottom:15px}
+.form-lbl{font-size:11px;font-weight:700;color:var(--t2);margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.5px}
+.form-inp{
+  width:100%;background:var(--bg3);border:1px solid var(--border);
+  border-radius:10px;padding:12px 15px;color:var(--t0);
+  font-size:14px;outline:none;transition:.18s;font-family:var(--body);
+}
+.form-inp:focus{border-color:var(--z);box-shadow:0 0 0 3px rgba(0,240,190,.12)}
+.form-inp::placeholder{color:var(--t3)}
+.quick-amts{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px}
+.qa-btn{
+  padding:7px 14px;border-radius:9px;
+  border:1px solid var(--border);background:var(--bg3);
+  color:var(--t2);font-size:12px;font-weight:600;
+  cursor:pointer;transition:.15s;font-family:var(--mono);
+}
+.qa-btn:hover{border-color:var(--z);color:var(--z)}
+.conv-line{font-size:12px;color:var(--z);font-family:var(--mono);margin-bottom:16px}
+.btn-mpesa{
+  width:100%;padding:14px;border-radius:12px;
+  background:linear-gradient(135deg,#00c853,#00e676);
+  color:#000;font-family:var(--font);font-size:15px;font-weight:800;
+  border:none;cursor:pointer;transition:.22s;letter-spacing:.2px;
+  box-shadow:0 6px 20px rgba(0,200,83,.4);
+}
+.btn-mpesa:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,200,83,.5)}
+.mpesa-secure{font-size:11px;color:var(--t3);text-align:center;margin-top:11px}
+
+/* ─── HOW IT WORKS ─── */
 .hiw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:56px}
-.hiw-card{text-align:center;padding:32px 24px;background:var(--bg2);border:1px solid var(--border);border-radius:18px;position:relative;transition:.22s}
-.hiw-card:hover{border-color:rgba(0,229,180,.2);transform:translateY(-3px)}
-.hiw-num{position:absolute;top:-15px;left:50%;transform:translateX(-50%);width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--z),var(--z3));display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:13px;font-weight:800;color:#000}
-.hiw-icon{font-size:36px;margin-bottom:14px;margin-top:8px}
-.hiw-title{font-family:var(--font);font-size:17px;font-weight:700;margin-bottom:8px}
-.hiw-text{font-size:13px;color:var(--t2);line-height:1.7}
-.hiw-connector{display:none}
+.hiw-card{
+  text-align:center;padding:36px 24px 32px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;position:relative;transition:.22s;
+}
+.hiw-card:hover{border-color:rgba(0,240,190,.25);transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.hiw-n{
+  position:absolute;top:-15px;left:50%;transform:translateX(-50%);
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--z),var(--z3));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);font-size:14px;font-weight:800;color:#000;
+  box-shadow:0 4px 14px rgba(0,240,190,.4);
+}
+.hiw-icon{font-size:40px;margin:12px 0 16px}
+.hiw-title{font-family:var(--font);font-size:18px;font-weight:700;margin-bottom:10px;color:var(--t0)}
+.hiw-text{font-size:13px;color:var(--t2);line-height:1.75}
 
-/* TESTIMONIALS */
-.testimonials-section{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+/* ─── TESTIMONIALS ─── */
+.testi-bg{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:48px}
-.testi-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:24px;transition:.18s}
-.testi-card:hover{border-color:var(--border2)}
-.testi-stars{color:var(--yellow);font-size:16px;margin-bottom:12px;letter-spacing:2px}
-.testi-text{font-size:14px;color:var(--t1);line-height:1.7;margin-bottom:16px;font-style:italic}
-.testi-author{display:flex;align-items:center;gap:11px}
-.testi-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:16px;font-weight:700;color:#000;flex-shrink:0}
-.testi-name{font-size:13px;font-weight:700}
-.testi-title{font-size:11px;color:var(--t2)}
+.tc-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:18px;padding:26px;transition:.2s;
+}
+.tc-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.tc-stars{color:var(--yellow);font-size:17px;letter-spacing:2px;margin-bottom:14px}
+.tc-text{font-size:14px;color:var(--t1);line-height:1.8;margin-bottom:18px;font-style:italic}
+.tc-author{display:flex;align-items:center;gap:12px}
+.tc-av{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font);font-size:16px;font-weight:700;color:#000;
+}
+.tc-name{font-size:14px;font-weight:700;color:var(--t0)}
+.tc-role{font-size:11px;color:var(--t2)}
 
-/* PRICING/PLANS */
-.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:52px;max-width:900px;margin-left:auto;margin-right:auto}
-.plan-card{background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:30px;text-align:center;position:relative;transition:.22s}
-.plan-card.popular{border-color:var(--z);box-shadow:0 0 40px rgba(0,229,180,.12)}
-.plan-card:hover{transform:translateY(-3px)}
-.plan-popular-badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--z);color:#000;font-family:var(--font);font-size:10px;font-weight:800;padding:4px 16px;border-radius:20px;letter-spacing:.5px}
-.plan-name{font-family:var(--font);font-size:20px;font-weight:800;margin-bottom:6px}
-.plan-price{font-family:var(--font);font-size:42px;font-weight:800;color:var(--z);line-height:1;margin-bottom:4px}
-.plan-price span{font-size:16px;color:var(--t2)}
-.plan-sub{font-size:13px;color:var(--t2);margin-bottom:24px}
-.plan-features{list-style:none;margin-bottom:28px;text-align:left}
-.plan-features li{padding:7px 0;font-size:13px;color:var(--t1);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
-.plan-features li:last-child{border-bottom:none}
-.plan-features li::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0}
-.plan-cta{width:100%;padding:12px;border-radius:10px;font-family:var(--font);font-size:14px;font-weight:700;border:none;cursor:pointer;transition:.2s;letter-spacing:.3px}
-.plan-cta-primary{background:var(--z);color:#000}
-.plan-cta-primary:hover{background:#00ccaa;transform:translateY(-1px)}
-.plan-cta-outline{background:transparent;border:1px solid var(--border2);color:var(--t1)}
-.plan-cta-outline:hover{border-color:var(--z);color:var(--z)}
+/* ─── PLANS ─── */
+.plans-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:22px;margin-top:52px;max-width:920px;margin-left:auto;margin-right:auto;
+}
+.plan-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;padding:32px;text-align:center;
+  position:relative;transition:.22s;
+}
+.plan-card.hot{
+  border-color:var(--z);
+  box-shadow:0 0 0 1px rgba(0,240,190,.2),0 30px 80px rgba(0,0,0,.4),var(--glow-z);
+}
+.plan-card:hover{transform:translateY(-4px)}
+.plan-hot-tag{
+  position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--z);color:#000;
+  font-family:var(--font);font-size:10px;font-weight:800;
+  padding:4px 18px;border-radius:20px;letter-spacing:.5px;
+  white-space:nowrap;
+}
+.plan-name{font-family:var(--font);font-size:22px;font-weight:800;margin-bottom:8px}
+.plan-price{font-family:var(--font);font-size:44px;font-weight:800;color:var(--z);line-height:1;margin-bottom:4px}
+.plan-price sub{font-size:16px;color:var(--t2);font-weight:400}
+.plan-tagline{font-size:13px;color:var(--t2);margin-bottom:26px}
+.plan-feats{list-style:none;margin-bottom:28px;text-align:left}
+.plan-feats li{padding:8px 0;font-size:13px;color:var(--t1);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.plan-feats li:last-child{border-bottom:none}
+.plan-feats li::before{content:'✓';color:var(--green);font-weight:700;font-size:14px;flex-shrink:0}
+.btn-plan-z{
+  width:100%;padding:13px;border-radius:11px;
+  background:var(--z);color:#000;
+  font-family:var(--font);font-size:14px;font-weight:800;
+  border:none;cursor:pointer;transition:.2s;letter-spacing:.2px;
+  box-shadow:0 4px 16px rgba(0,240,190,.35);
+}
+.btn-plan-z:hover{background:#00d9a8;transform:translateY(-1px);box-shadow:0 7px 24px rgba(0,240,190,.45)}
+.btn-plan-ol{
+  width:100%;padding:13px;border-radius:11px;
+  background:transparent;border:1px solid var(--border2);
+  color:var(--t1);font-family:var(--font);font-size:14px;font-weight:700;
+  cursor:pointer;transition:.2s;
+}
+.btn-plan-ol:hover{border-color:var(--z);color:var(--z);background:rgba(0,240,190,.05)}
 
-/* FAQ */
-.faq-wrap{max-width:720px;margin:52px auto 0}
-.faq-item{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden;transition:.18s}
+/* ─── FAQ ─── */
+.faq-bg{background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.faq-list{max-width:740px;margin:48px auto 0}
+.faq-item{
+  border:1px solid var(--border);border-radius:14px;
+  margin-bottom:10px;overflow:hidden;transition:.18s;
+}
 .faq-item:hover{border-color:var(--border2)}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;font-size:15px;font-weight:600;gap:14px;font-family:var(--font)}
-.faq-icon{font-size:18px;color:var(--z);flex-shrink:0;transition:.25s}
-.faq-a{font-size:14px;color:var(--t2);line-height:1.7;padding:0 22px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
-.faq-item.open .faq-a{max-height:200px;padding:0 22px 18px}
+.faq-q{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:19px 24px;cursor:pointer;gap:16px;
+  font-size:15px;font-weight:600;font-family:var(--font);color:var(--t0);
+}
+.faq-icon{font-size:20px;color:var(--z);flex-shrink:0;transition:.25s}
+.faq-a{
+  font-size:14px;color:var(--t2);line-height:1.75;
+  padding:0 24px;max-height:0;overflow:hidden;transition:all .3s ease;
+}
+.faq-item.open .faq-a{max-height:220px;padding:0 24px 20px}
 .faq-item.open .faq-icon{transform:rotate(45deg)}
 
-/* CTA SECTION */
-.cta-section{background:linear-gradient(135deg,rgba(0,229,180,.09),rgba(124,92,252,.07));border-top:1px solid rgba(0,229,180,.12);border-bottom:1px solid rgba(0,229,180,.12);text-align:center}
-.cta-title{font-family:var(--font);font-size:clamp(28px,4vw,52px);font-weight:800;letter-spacing:-1px;margin-bottom:16px;line-height:1.1}
-.cta-sub{font-size:17px;color:var(--t2);margin-bottom:36px;line-height:1.6}
-.cta-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.cta-trust{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:28px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--t2)}
-.trust-icon{font-size:16px}
+/* ─── FINAL CTA STRIP ─── */
+.cta-strip{
+  background:linear-gradient(135deg,rgba(0,240,190,.1),rgba(139,92,246,.08));
+  border-top:1px solid rgba(0,240,190,.15);
+  border-bottom:1px solid rgba(0,240,190,.15);
+  text-align:center;padding:90px 6%;
+}
+.cta-strip-title{
+  font-family:var(--font);font-size:clamp(30px,5vw,58px);
+  font-weight:800;letter-spacing:-1.5px;
+  margin-bottom:18px;line-height:1.1;
+}
+.cta-strip-sub{font-size:18px;color:var(--t2);margin-bottom:38px;line-height:1.7}
+.cta-strip-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.trust-row{display:flex;align-items:center;justify-content:center;gap:28px;margin-top:32px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2)}
+.trust-ic{font-size:17px}
 
-/* FOOTER */
-footer{background:var(--bg1);border-top:1px solid var(--border);padding:60px 5% 30px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
-.footer-brand .logo{display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.footer-brand p{font-size:13px;color:var(--t2);line-height:1.7;max-width:280px}
-.footer-col h4{font-family:var(--font);font-size:14px;font-weight:700;margin-bottom:16px;color:var(--t0)}
-.footer-col a{display:block;font-size:13px;color:var(--t2);margin-bottom:9px;transition:.15s}
-.footer-col a:hover{color:var(--z)}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px}
+/* ─── FOOTER ─── */
+footer{background:var(--bg1);border-top:1px solid var(--border);padding:64px 6% 32px}
+.footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:52px;margin-bottom:52px}
+.footer-brand-name{font-family:var(--font);font-size:19px;font-weight:800}
+.footer-brand-name span{color:var(--z)}
+.footer-tagline{font-size:13px;color:var(--t2);line-height:1.75;max-width:280px;margin-top:12px}
+.footer-contact{margin-top:16px;font-size:12px;color:var(--t3);line-height:2}
+.foot-col h4{font-family:var(--font);font-size:14px;font-weight:700;margin-bottom:18px;color:var(--t0)}
+.foot-col a{display:block;font-size:13px;color:var(--t2);margin-bottom:10px;transition:.15s}
+.foot-col a:hover{color:var(--z)}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px;
+}
 .footer-bottom p{font-size:12px;color:var(--t3)}
-.footer-social{display:flex;gap:12px}
-.footer-social a{width:34px;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:15px;transition:.18s}
-.footer-social a:hover{border-color:var(--z);background:rgba(0,229,180,.1)}
-.footer-disclaimer{font-size:11px;color:var(--t3);line-height:1.7;margin-top:20px;padding:14px;background:var(--bg2);border-radius:8px;border:1px solid var(--border)}
+.f-social{display:flex;gap:10px}
+.f-social a{
+  width:36px;height:36px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:.18s;
+}
+.f-social a:hover{border-color:var(--z);background:rgba(0,240,190,.1)}
+.footer-disc{
+  font-size:11px;color:var(--t3);line-height:1.75;
+  margin-top:22px;padding:16px;
+  background:var(--bg2);border-radius:10px;border:1px solid var(--border);
+}
+/* ─── FLOAT CTA ─── */
+#float-btn{
+  display:none;position:fixed;bottom:28px;right:28px;z-index:500;
+}
+#float-btn button{
+  padding:14px 26px;border-radius:50px;
+  background:linear-gradient(135deg,var(--z),#00c49a);
+  color:#000;font-family:var(--font);font-size:14px;font-weight:800;
+  border:none;cursor:pointer;
+  box-shadow:0 8px 30px rgba(0,240,190,.5);transition:.22s;
+  letter-spacing:.2px;
+}
+#float-btn button:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,240,190,.6)}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .nav-links{display:none}
-  .nav-ctas{display:none}
+/* ─── ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}
+.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:940px){
+  .nav-links,.nav-btns{display:none}
   .hamburger{display:block}
-  .mpesa-grid{grid-template-columns:1fr}
+  .mpesa-layout{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:600px){
-  .hero-stats{gap:24px}
-  .hero-stat-divider{display:none}
+@media(max-width:640px){
+  .hstat{padding:0 14px}
+  .hero-stats{padding:14px 18px}
   .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
+  .hero-ctas{flex-direction:column;align-items:center}
+  .btn-cta-main,.btn-cta-ghost{width:100%;max-width:320px}
 }
-/* ANIMATIONS */
-.fade-in{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-.fade-in-delay-1{transition-delay:.1s}
-.fade-in-delay-2{transition-delay:.2s}
-.fade-in-delay-3{transition-delay:.3s}
-.fade-in-delay-4{transition-delay:.4s}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="navbar">
+<!-- ══════ NAVBAR ══════ -->
+<nav id="nav">
   <a href="#" class="nav-logo">
     <div class="nav-logo-icon">Z</div>
-    <div class="nav-logo-name">Zenith<span>FX</span></div>
+    <div class="nav-logo-text">Zenith<span>FX</span></div>
   </a>
   <div class="nav-links">
     <a href="#features">Features</a>
     <a href="#markets">Markets</a>
-    <a href="#deposit">Deposit</a>
-    <a href="#how-it-works">How It Works</a>
+    <a href="#deposit">M-Pesa</a>
+    <a href="#how">How It Works</a>
     <a href="#faq">FAQ</a>
   </div>
-  <div class="nav-ctas">
-    <button class="btn-outline-sm" onclick="window.location.href='app.html'">Sign In</button>
-    <button class="btn-z-sm" onclick="window.location.href='app.html'">Start Free →</button>
+  <div class="nav-btns">
+    <button class="btn-nav-ghost" onclick="location.href='app.html'">Sign In</button>
+    <button class="btn-nav-primary" onclick="location.href='app.html'">Start Free →</button>
   </div>
-  <button class="hamburger" onclick="toggleMobileMenu()">☰</button>
+  <button class="hamburger" onclick="toggleMob()">☰</button>
 </nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#features" onclick="toggleMobileMenu()">Features</a>
-  <a href="#markets" onclick="toggleMobileMenu()">Markets</a>
-  <a href="#deposit" onclick="toggleMobileMenu()">Deposit</a>
-  <a href="#how-it-works" onclick="toggleMobileMenu()">How It Works</a>
-  <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
-  <div class="mobile-menu-ctas">
-    <button class="btn-outline-sm" onclick="window.location.href='app.html'" style="flex:1">Sign In</button>
-    <button class="btn-z-sm" onclick="window.location.href='app.html'" style="flex:1">Start Free →</button>
+<div class="mob-menu" id="mob-menu">
+  <a href="#features" onclick="closeMob()">Features</a>
+  <a href="#markets" onclick="closeMob()">Markets</a>
+  <a href="#deposit" onclick="closeMob()">M-Pesa Deposit</a>
+  <a href="#how" onclick="closeMob()">How It Works</a>
+  <a href="#faq" onclick="closeMob()">FAQ</a>
+  <div class="mob-ctas">
+    <button class="btn-nav-ghost" onclick="location.href='app.html'" style="flex:1">Sign In</button>
+    <button class="btn-nav-primary" onclick="location.href='app.html'" style="flex:1">Start Free →</button>
   </div>
 </div>
 
-<!-- HERO -->
+<!-- ══════ HERO ══════ -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid-bg"></div>
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
   <div class="hero-content">
-    <div class="hero-badge fade-in">
-      <div class="hero-badge-dot"></div>
+    <div class="hero-eyebrow reveal">
+      <div class="hero-eyebrow-dot"></div>
       Africa's Premier Trading Platform
     </div>
-    <h1 class="hero-title fade-in fade-in-delay-1">
-      Trade The World<br><span class="line2">From Your Phone</span>
+    <h1 class="hero-h1 reveal delay-1">
+      Trade The World<br>
+      <span class="accent">From Your Phone</span>
     </h1>
-    <p class="hero-sub fade-in fade-in-delay-2">Synthetic Indices, Forex, Crypto, Gold, Oil and more. Deposit with M-Pesa instantly. Start with a free $10,000 demo account — no credit card required.</p>
-    <div class="hero-ctas fade-in fade-in-delay-3">
-      <button class="btn-hero-primary" onclick="window.location.href='app.html'">Start Trading Free →</button>
-      <button class="btn-hero-secondary" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">▶ See How It Works</button>
+    <p class="hero-sub reveal delay-2">
+      Synthetic Indices, Forex, Crypto, Gold and more — all in one platform.
+      Deposit with M-Pesa instantly. Start with a free $10,000 demo account.
+    </p>
+    <div class="hero-ctas reveal delay-3">
+      <button class="btn-cta-main" onclick="location.href='app.html'">Start Trading Free →</button>
+      <button class="btn-cta-ghost" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">▶ See How It Works</button>
     </div>
-    <div class="hero-stats fade-in fade-in-delay-4">
-      <div class="hero-stat"><div class="hero-stat-val">50<span>+</span></div><div class="hero-stat-lbl">Markets Available</div></div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat"><div class="hero-stat-val">$0</div><div class="hero-stat-lbl">Deposit Fees</div></div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat"><div class="hero-stat-val">24<span>/7</span></div><div class="hero-stat-lbl">Synthetic Trading</div></div>
-      <div class="hero-stat-divider"></div>
-      <div class="hero-stat"><div class="hero-stat-val">85<span>%</span></div><div class="hero-stat-lbl">Max Payout</div></div>
+    <div class="hero-stats reveal delay-4">
+      <div class="hstat"><div class="hstat-val">50<em>+</em></div><div class="hstat-lbl">Markets</div></div>
+      <div class="hstat"><div class="hstat-val">$<em>0</em></div><div class="hstat-lbl">Deposit Fees</div></div>
+      <div class="hstat"><div class="hstat-val">24<em>/7</em></div><div class="hstat-lbl">Synthetic Trading</div></div>
+      <div class="hstat"><div class="hstat-val">85<em>%</em></div><div class="hstat-lbl">Max Payout</div></div>
     </div>
   </div>
 </section>
 
-<!-- HERO CHART VISUAL -->
-<div class="hero-visual" style="background:var(--bg0);padding:0 5% 80px">
-  <div class="chart-card fade-in">
-    <div class="chart-card-header">
-      <div class="chart-card-dots">
-        <div class="chart-card-dot" style="background:#ff5f57"></div>
-        <div class="chart-card-dot" style="background:#febc2e"></div>
-        <div class="chart-card-dot" style="background:#28c840"></div>
+<!-- ══════ TICKER ══════ -->
+<div class="ticker-strip">
+  <div class="ticker-track" id="ticker"></div>
+</div>
+
+<!-- ══════ CHART PREVIEW ══════ -->
+<div class="hero-chart-section">
+  <div class="chart-preview-card reveal">
+    <div class="cpc-titlebar">
+      <div class="cpc-dots">
+        <div class="cpc-dot" style="background:#ff5f57"></div>
+        <div class="cpc-dot" style="background:#febc2e"></div>
+        <div class="cpc-dot" style="background:#28c840"></div>
       </div>
-      <div class="chart-card-title">
-        ZenithFX Trader's Hub
-        <div class="chart-live-badge"><div class="chart-live-dot"></div>LIVE</div>
+      <div class="cpc-info">
+        <div class="cpc-name">ZenithFX — Trader's Hub</div>
+        <div class="cpc-live"><div class="cpc-live-dot"></div>LIVE</div>
       </div>
-      <div style="font-family:var(--mono);font-size:13px;color:var(--z)" id="hero-price">1,243.87</div>
+      <div class="cpc-price" id="preview-price">1,243.87</div>
     </div>
-    <canvas id="hero-canvas"></canvas>
-    <div class="chart-card-footer">
-      <div class="chart-footer-stat"><div class="cfs-lbl">Market</div><div class="cfs-val" style="color:var(--t0)">V10 Index</div></div>
-      <div class="chart-footer-stat"><div class="cfs-lbl">Change</div><div class="cfs-val" style="color:var(--green)">+0.12%</div></div>
-      <div class="chart-footer-stat"><div class="cfs-lbl">Stake</div><div class="cfs-val">$10.00</div></div>
-      <div class="chart-footer-stat"><div class="cfs-lbl">Payout</div><div class="cfs-val" style="color:var(--green)">$18.50</div></div>
-      <div style="display:flex;gap:10px">
-        <button style="padding:8px 20px;border-radius:9px;background:linear-gradient(135deg,#00e5b4,#00b894);color:#000;font-family:var(--font);font-size:13px;font-weight:800;border:none;cursor:pointer" onclick="window.location.href='app.html'">▲ RISE</button>
-        <button style="padding:8px 20px;border-radius:9px;background:linear-gradient(135deg,#ff4d6d,#d63059);color:#fff;font-family:var(--font);font-size:13px;font-weight:800;border:none;cursor:pointer" onclick="window.location.href='app.html'">▼ FALL</button>
+    <canvas id="preview-canvas"></canvas>
+    <div class="cpc-footer">
+      <div class="cpc-stat"><div class="cpc-stat-l">Market</div><div class="cpc-stat-v" style="color:var(--t0)">V10 Index</div></div>
+      <div class="cpc-stat"><div class="cpc-stat-l">24h Change</div><div class="cpc-stat-v up">+0.12%</div></div>
+      <div class="cpc-stat"><div class="cpc-stat-l">Stake</div><div class="cpc-stat-v">$10.00</div></div>
+      <div class="cpc-stat"><div class="cpc-stat-l">Est. Payout</div><div class="cpc-stat-v up">$18.50</div></div>
+      <div class="cpc-trade-btns">
+        <button class="btn-rise" onclick="location.href='app.html'">▲ RISE</button>
+        <button class="btn-fall" onclick="location.href='app.html'">▼ FALL</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- LIVE TICKER -->
-<div class="ticker-strip">
-  <div class="ticker-track" id="hero-ticker"></div>
-</div>
-
-<!-- FEATURES -->
-<section id="features">
-  <div class="text-center" style="text-align:center">
-    <div class="section-badge fade-in">Everything You Need</div>
-    <h2 class="section-title fade-in" style="margin:0 auto 16px">Built for Serious Traders</h2>
-    <p class="section-sub fade-in" style="margin:0 auto">Professional-grade tools, real-time data and a seamless experience — whether you're a beginner or a pro.</p>
+<!-- ══════ FEATURES ══════ -->
+<section id="features" class="features-bg">
+  <div class="tc">
+    <div class="section-eyebrow reveal">Everything You Need</div>
+    <h2 class="section-title reveal">Built for Serious Traders</h2>
+    <p class="section-sub reveal">Professional-grade tools, real-time data and a seamless experience — built for Africa.</p>
   </div>
   <div class="features-grid">
-    <div class="feature-card fade-in"><div class="feature-icon" style="background:rgba(0,229,180,.1)">📈</div><div class="feature-title">Live Price Charts</div><div class="feature-text">Real-time streaming charts with EMA, SMA, Bollinger Bands and RSI indicators. Line and candlestick chart types with multiple timeframes from 1 second to 4 hours.</div><div class="feature-tag">8 TIMEFRAMES</div></div>
-    <div class="feature-card fade-in fade-in-delay-1"><div class="feature-icon" style="background:rgba(0,184,255,.1)">🎲</div><div class="feature-title">Synthetic Indices</div><div class="feature-text">Trade unique 24/7 synthetic markets — Volatility 10-100, Boom & Crash 1000, Step Index, Jump Index and more. Available even on weekends and holidays.</div><div class="feature-tag">11 SYNTHETIC MARKETS</div></div>
-    <div class="feature-card fade-in fade-in-delay-2"><div class="feature-icon" style="background:rgba(124,92,252,.1)">🤖</div><div class="feature-title">DBot Automation</div><div class="feature-text">Build automated trading strategies visually — no coding required. Drag-and-drop blocks to create logic flows, backtest on historical data, and run 24/7.</div><div class="feature-tag">NO CODE REQUIRED</div></div>
-    <div class="feature-card fade-in"><div class="feature-icon" style="background:rgba(249,115,22,.1)">↗</div><div class="feature-title">Copy Trading</div><div class="feature-text">Follow and automatically copy trades from top-performing traders on the platform. View their win rate, monthly returns, drawdown and risk profile before copying.</div><div class="feature-tag">LIVE COPY SIGNALS</div></div>
-    <div class="feature-card fade-in fade-in-delay-1"><div class="feature-icon" style="background:rgba(0,214,143,.1)">📱</div><div class="feature-title">M-Pesa Deposits</div><div class="feature-text">Deposit and withdraw instantly using M-Pesa through our Lipana.dev integration. STK push to your phone — funds credited in seconds. Zero deposit fees.</div><div class="feature-tag">POWERED BY LIPANA.DEV</div></div>
-    <div class="feature-card fade-in fade-in-delay-2"><div class="feature-icon" style="background:rgba(251,191,36,.1)">🛡</div><div class="feature-title">Secure & Regulated</div><div class="feature-text">Enterprise-grade 256-bit TLS encryption. KYC/AML compliance built in. Your funds are held in segregated accounts. Full audit trail on every transaction.</div><div class="feature-tag">BANK-GRADE SECURITY</div></div>
+    <div class="feat-card reveal">
+      <div class="feat-icon-wrap" style="background:rgba(0,240,190,.1)">📈</div>
+      <div class="feat-title">Live Price Charts</div>
+      <div class="feat-text">Real-time streaming charts with EMA, SMA, Bollinger Bands and RSI. Line and candlestick chart types with 8 timeframes from 1 second to 4 hours.</div>
+      <div class="feat-pill">8 TIMEFRAMES</div>
+    </div>
+    <div class="feat-card reveal delay-1">
+      <div class="feat-icon-wrap" style="background:rgba(0,196,255,.1)">🎲</div>
+      <div class="feat-title">Synthetic Indices 24/7</div>
+      <div class="feat-text">Trade unique simulated markets available around the clock — Volatility 10–100, Boom & Crash, Step Index, Jump and Drift. No news events, pure mathematics.</div>
+      <div class="feat-pill">11 SYNTHETIC MARKETS</div>
+    </div>
+    <div class="feat-card reveal delay-2">
+      <div class="feat-icon-wrap" style="background:rgba(139,92,246,.1)">🤖</div>
+      <div class="feat-title">DBot Automation</div>
+      <div class="feat-text">Build automated trading strategies visually without writing a single line of code. Drag-and-drop blocks, backtest on historical data and run your bot 24/7.</div>
+      <div class="feat-pill">NO-CODE BUILDER</div>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon-wrap" style="background:rgba(249,115,22,.1)">↗</div>
+      <div class="feat-title">Copy Trading</div>
+      <div class="feat-text">Follow top-performing traders and automatically mirror their trades on your account in real time. View win rates, monthly returns and risk profiles before copying.</div>
+      <div class="feat-pill">LIVE COPY SIGNALS</div>
+    </div>
+    <div class="feat-card reveal delay-1">
+      <div class="feat-icon-wrap" style="background:rgba(0,230,118,.1)">📱</div>
+      <div class="feat-title">M-Pesa Deposits</div>
+      <div class="feat-text">Deposit and withdraw instantly using M-Pesa through our Lipana.dev integration. Receive an STK push, enter your PIN — funds credited in seconds. Zero fees.</div>
+      <div class="feat-pill">POWERED BY LIPANA.DEV</div>
+    </div>
+    <div class="feat-card reveal delay-2">
+      <div class="feat-icon-wrap" style="background:rgba(251,191,36,.1)">🛡</div>
+      <div class="feat-title">Bank-Grade Security</div>
+      <div class="feat-text">256-bit TLS encryption on every transaction. Full KYC/AML compliance built in. Client funds held in segregated accounts. Complete audit trail on all activity.</div>
+      <div class="feat-pill">256-BIT TLS ENCRYPTED</div>
+    </div>
   </div>
 </section>
 
-<!-- MARKETS -->
-<section id="markets" class="markets-section">
-  <div style="text-align:center;margin-bottom:0">
-    <div class="section-badge fade-in">50+ Instruments</div>
-    <h2 class="section-title fade-in" style="margin:0 auto 16px">Trade Any Market</h2>
-    <p class="section-sub fade-in" style="margin:0 auto 36px">From synthetic indices to African currency pairs — all markets available on one platform.</p>
+<!-- ══════ MARKETS ══════ -->
+<section id="markets">
+  <div class="tc mb-" style="margin-bottom:36px">
+    <div class="section-eyebrow reveal">50+ Instruments</div>
+    <h2 class="section-title reveal">Trade Any Market, Anywhere</h2>
+    <p class="section-sub reveal">From African currency pairs to global indices — all markets on one platform.</p>
   </div>
-  <div class="markets-tabs">
-    <button class="mk-tab active" onclick="filterCards(event,'all')">All Markets</button>
-    <button class="mk-tab" onclick="filterCards(event,'synthetic')">Synthetic</button>
-    <button class="mk-tab" onclick="filterCards(event,'forex')">Forex</button>
-    <button class="mk-tab" onclick="filterCards(event,'crypto')">Crypto</button>
-    <button class="mk-tab" onclick="filterCards(event,'commodities')">Commodities</button>
-    <button class="mk-tab" onclick="filterCards(event,'indices')">Indices</button>
+  <div class="mk-filter">
+    <button class="mk-btn on" onclick="filterMk(event,'all')">All</button>
+    <button class="mk-btn" onclick="filterMk(event,'synthetic')">Synthetic</button>
+    <button class="mk-btn" onclick="filterMk(event,'forex')">Forex</button>
+    <button class="mk-btn" onclick="filterMk(event,'crypto')">Crypto</button>
+    <button class="mk-btn" onclick="filterMk(event,'commodities')">Commodities</button>
+    <button class="mk-btn" onclick="filterMk(event,'indices')">Indices</button>
   </div>
-  <div class="markets-cards" id="markets-cards"></div>
-  <div style="text-align:center;margin-top:36px">
-    <button class="btn-hero-primary" onclick="window.location.href='app.html'">Trade All Markets →</button>
+  <div class="mk-grid" id="mk-grid"></div>
+  <div style="text-align:center;margin-top:40px">
+    <button class="btn-cta-main" onclick="location.href='app.html'" style="display:inline-block">Trade All Markets →</button>
   </div>
 </section>
 
-<!-- MPESA / DEPOSIT -->
-<section id="deposit" class="mpesa-section">
-  <div class="mpesa-grid">
+<!-- ══════ MPESA ══════ -->
+<section id="deposit" class="mpesa-bg">
+  <div class="mpesa-layout">
     <div>
-      <div class="section-badge fade-in">Zero Fees · Instant</div>
-      <h2 class="section-title fade-in">Deposit with <span style="color:#00c853">M-Pesa</span> in Seconds</h2>
-      <p class="section-sub fade-in">ZenithFX integrates directly with M-Pesa through Lipana.dev. Send money from your phone — funds appear in your trading account instantly, 24/7.</p>
-      <div class="mpesa-steps fade-in">
-        <div class="mpesa-step"><div class="ms-num">1</div><div class="ms-info"><h4>Enter your M-Pesa number</h4><p>Type your Safaricom M-Pesa phone number on the deposit page.</p></div></div>
-        <div class="mpesa-step"><div class="ms-num">2</div><div class="ms-info"><h4>Enter the amount in KES</h4><p>Minimum deposit is KES 500. Funds are converted to USD automatically at live rates.</p></div></div>
-        <div class="mpesa-step"><div class="ms-num">3</div><div class="ms-info"><h4>Receive STK Push & enter PIN</h4><p>A payment prompt appears on your phone. Enter your M-Pesa PIN to confirm.</p></div></div>
-        <div class="mpesa-step"><div class="ms-num">4</div><div class="ms-info"><h4>Funds credited instantly</h4><p>Your ZenithFX balance updates immediately. Start trading in seconds.</p></div></div>
+      <div class="section-eyebrow reveal">Zero Fees · Instant</div>
+      <h2 class="section-title reveal">Deposit with <span style="color:#00e676">M-Pesa</span><br>in Seconds</h2>
+      <p class="section-sub reveal">Direct M-Pesa integration via Lipana.dev. Send money from your Safaricom line — funds appear instantly in your trading account, 24/7.</p>
+      <div class="mpesa-steps reveal">
+        <div class="mp-step"><div class="mp-num">1</div><div><h4>Enter your M-Pesa number</h4><p>Type your Safaricom phone number on the deposit page.</p></div></div>
+        <div class="mp-step"><div class="mp-num">2</div><div><h4>Enter the amount in KES</h4><p>Minimum KES 500. Converted to USD at live rates automatically.</p></div></div>
+        <div class="mp-step"><div class="mp-num">3</div><div><h4>Receive STK Push on your phone</h4><p>A payment prompt appears instantly. Enter your M-Pesa PIN.</p></div></div>
+        <div class="mp-step"><div class="mp-num">4</div><div><h4>Funds credited instantly</h4><p>Balance updates in seconds. Start trading immediately.</p></div></div>
       </div>
-      <div style="display:flex;gap:10px;margin-top:28px;flex-wrap:wrap">
-        <div style="display:flex;align-items:center;gap:8px;background:rgba(0,200,83,.1);border:1px solid rgba(0,200,83,.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#00c853">✓ Zero deposit fees</div>
-        <div style="display:flex;align-items:center;gap:8px;background:rgba(0,200,83,.1);border:1px solid rgba(0,200,83,.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#00c853">✓ Instant credit 24/7</div>
-        <div style="display:flex;align-items:center;gap:8px;background:rgba(0,200,83,.1);border:1px solid rgba(0,200,83,.2);border-radius:8px;padding:8px 14px;font-size:12px;color:#00c853">✓ KES → USD auto</div>
+      <div class="mp-badges reveal">
+        <div class="mp-badge">✓ Zero deposit fees</div>
+        <div class="mp-badge">✓ Instant 24/7 credit</div>
+        <div class="mp-badge">✓ KES → USD auto</div>
       </div>
     </div>
-    <div class="fade-in">
-      <div class="mpesa-card">
-        <div class="mpesa-card-header">
-          <div class="mpesa-logo">📱</div>
-          <div><div style="font-family:var(--font);font-size:16px;font-weight:800">M-Pesa Deposit</div><div style="font-size:12px;color:var(--t2)">Powered by Lipana.dev</div></div>
+    <div class="reveal delay-2">
+      <div class="mpesa-form-card">
+        <div class="mfc-header">
+          <div class="mfc-logo">📱</div>
+          <div><div class="mfc-title">M-Pesa Deposit</div><div class="mfc-sub">Powered by Lipana.dev</div></div>
         </div>
-        <div class="mpesa-form-row"><label class="mpesa-lbl">M-Pesa Phone Number</label><input class="mpesa-input" type="tel" placeholder="0712 345 678" id="lp-phone"></div>
-        <div class="mpesa-form-row"><label class="mpesa-lbl">Amount (KES)</label><input class="mpesa-input" type="number" placeholder="e.g. 5,000" id="lp-amt" oninput="lpCalc()"></div>
-        <div class="mpesa-amounts">
-          <button class="ma-btn" onclick="setLpAmt(500)">500</button>
-          <button class="ma-btn" onclick="setLpAmt(1000)">1K</button>
-          <button class="ma-btn" onclick="setLpAmt(2000)">2K</button>
-          <button class="ma-btn" onclick="setLpAmt(5000)">5K</button>
-          <button class="ma-btn" onclick="setLpAmt(10000)">10K</button>
-          <button class="ma-btn" onclick="setLpAmt(50000)">50K</button>
+        <div class="form-row"><label class="form-lbl">M-Pesa Phone Number</label><input class="form-inp" type="tel" id="mp-ph" placeholder="0712 345 678"></div>
+        <div class="form-row"><label class="form-lbl">Amount (KES)</label><input class="form-inp" type="number" id="mp-amt" placeholder="Min. KES 500" oninput="updateConv()"></div>
+        <div class="quick-amts">
+          <button class="qa-btn" onclick="setAmt(500)">500</button>
+          <button class="qa-btn" onclick="setAmt(1000)">1K</button>
+          <button class="qa-btn" onclick="setAmt(2000)">2K</button>
+          <button class="qa-btn" onclick="setAmt(5000)">5K</button>
+          <button class="qa-btn" onclick="setAmt(10000)">10K</button>
+          <button class="qa-btn" onclick="setAmt(50000)">50K</button>
         </div>
-        <div class="conv-display" id="lp-conv">≈ Enter amount to see USD equivalent</div>
-        <div style="height:12px"></div>
-        <button class="mpesa-submit" onclick="lpSubmit()">💚 Pay with M-Pesa</button>
-        <div class="mpesa-note">🔒 Secure STK Push via Lipana.dev · Instant · Zero fees</div>
+        <div class="conv-line" id="conv-line">≈ Enter amount to see USD equivalent</div>
+        <button class="btn-mpesa" onclick="mpesaSubmit()">💚 Pay with M-Pesa</button>
+        <div class="mpesa-secure">🔒 Secure STK Push via Lipana.dev · Instant · Zero fees</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how-it-works">
-  <div style="text-align:center">
-    <div class="section-badge fade-in">Simple Process</div>
-    <h2 class="section-title fade-in" style="margin:0 auto 12px">Start Trading in Minutes</h2>
-    <p class="section-sub fade-in" style="margin:0 auto">Four simple steps from signup to your first trade.</p>
+<!-- ══════ HOW IT WORKS ══════ -->
+<section id="how">
+  <div class="tc">
+    <div class="section-eyebrow reveal">Simple 4-Step Process</div>
+    <h2 class="section-title reveal">Start Trading in Minutes</h2>
+    <p class="section-sub reveal">From signup to your first trade — no complexity, no waiting.</p>
   </div>
   <div class="hiw-grid">
-    <div class="hiw-card fade-in"><div class="hiw-num">1</div><div class="hiw-icon">📝</div><div class="hiw-title">Create Account</div><div class="hiw-text">Sign up free in under 2 minutes. Email, name, country — that's all you need to get started.</div></div>
-    <div class="hiw-card fade-in fade-in-delay-1"><div class="hiw-num">2</div><div class="hiw-icon">🎮</div><div class="hiw-title">Practice on Demo</div><div class="hiw-text">Get $10,000 virtual funds instantly. Practice all markets and strategies with zero risk.</div></div>
-    <div class="hiw-card fade-in fade-in-delay-2"><div class="hiw-num">3</div><div class="hiw-icon">📱</div><div class="hiw-title">Deposit via M-Pesa</div><div class="hiw-text">When ready, deposit real money via M-Pesa, card, bank or crypto. Funds arrive instantly.</div></div>
-    <div class="hiw-card fade-in fade-in-delay-3"><div class="hiw-num">4</div><div class="hiw-icon">💰</div><div class="hiw-title">Trade & Withdraw</div><div class="hiw-text">Place trades on live markets and withdraw your profits back to M-Pesa whenever you want.</div></div>
+    <div class="hiw-card reveal"><div class="hiw-n">1</div><div class="hiw-icon">📝</div><div class="hiw-title">Create Account</div><div class="hiw-text">Sign up free in under 2 minutes. Email, name and country — that's all you need.</div></div>
+    <div class="hiw-card reveal delay-1"><div class="hiw-n">2</div><div class="hiw-icon">🎮</div><div class="hiw-title">Practice on Demo</div><div class="hiw-text">Get $10,000 virtual funds instantly. Practice all markets and strategies risk-free.</div></div>
+    <div class="hiw-card reveal delay-2"><div class="hiw-n">3</div><div class="hiw-icon">📱</div><div class="hiw-title">Deposit via M-Pesa</div><div class="hiw-text">When ready, deposit real money via M-Pesa from as little as KES 500. Instant.</div></div>
+    <div class="hiw-card reveal delay-3"><div class="hiw-n">4</div><div class="hiw-icon">💰</div><div class="hiw-title">Trade & Withdraw</div><div class="hiw-text">Place trades and withdraw your profits back to M-Pesa whenever you want.</div></div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div style="text-align:center">
-    <div class="section-badge fade-in">Real Traders</div>
-    <h2 class="section-title fade-in" style="margin:0 auto 12px">Trusted Across Africa</h2>
-    <p class="section-sub fade-in" style="margin:0 auto">Thousands of traders from Kenya, Tanzania, Uganda, Nigeria and beyond.</p>
+<!-- ══════ TESTIMONIALS ══════ -->
+<section class="testi-bg">
+  <div class="tc">
+    <div class="section-eyebrow reveal">Real Traders</div>
+    <h2 class="section-title reveal">Trusted Across Africa</h2>
+    <p class="section-sub reveal">Thousands of traders from Kenya, Tanzania, Uganda, Nigeria and beyond.</p>
   </div>
   <div class="testi-grid">
-    <div class="testi-card fade-in"><div class="testi-stars">★★★★★</div><div class="testi-text">"The M-Pesa integration is seamless. I deposit KES 1000 and it's in my account within seconds. Best trading platform I've used."</div><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#00e5b4,#00b8ff)">DM</div><div><div class="testi-name">Douglas M.</div><div class="testi-title">Trader · Nairobi, Kenya</div></div></div></div>
-    <div class="testi-card fade-in fade-in-delay-1"><div class="testi-stars">★★★★★</div><div class="testi-text">"The DBot automation is incredible. I set it up once and it trades Volatility 75 while I sleep. My monthly returns have doubled."</div><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#7c5cfc,#ff4d6d)">AK</div><div><div class="testi-name">Amina K.</div><div class="testi-title">Full-time Trader · Mombasa</div></div></div></div>
-    <div class="testi-card fade-in fade-in-delay-2"><div class="testi-stars">★★★★★</div><div class="testi-text">"Started with the demo account and practiced for 2 weeks. Now trading live with consistent profits. The copy trading feature is a game changer."</div><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#f59e0b,#f97316)">JO</div><div><div class="testi-name">James O.</div><div class="testi-title">Part-time Trader · Kampala</div></div></div></div>
+    <div class="tc-card reveal"><div class="tc-stars">★★★★★</div><div class="tc-text">"The M-Pesa integration is absolutely seamless. I deposit KES 1,000 and it's in my account within seconds. Best trading platform I've ever used."</div><div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#00f0be,#00b8ff)">DM</div><div><div class="tc-name">Douglas M.</div><div class="tc-role">Trader · Nairobi, Kenya</div></div></div></div>
+    <div class="tc-card reveal delay-1"><div class="tc-stars">★★★★★</div><div class="tc-text">"The DBot automation is a game changer. I set it up once and it trades Volatility 75 while I sleep. My monthly returns have consistently doubled."</div><div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#8b5cf6,#ff4569)">AK</div><div><div class="tc-name">Amina K.</div><div class="tc-role">Full-time Trader · Mombasa</div></div></div></div>
+    <div class="tc-card reveal delay-2"><div class="tc-stars">★★★★★</div><div class="tc-text">"Started with the demo and practiced for 2 weeks. Now trading live with consistent profits. The copy trading feature saved me months of learning."</div><div class="tc-author"><div class="tc-av" style="background:linear-gradient(135deg,#f59e0b,#f97316)">JO</div><div><div class="tc-name">James O.</div><div class="tc-role">Part-time Trader · Kampala</div></div></div></div>
   </div>
 </section>
 
-<!-- PLANS -->
+<!-- ══════ PLANS ══════ -->
 <section id="pricing">
-  <div style="text-align:center">
-    <div class="section-badge fade-in">Transparent Pricing</div>
-    <h2 class="section-title fade-in" style="margin:0 auto 12px">Simple, No Hidden Fees</h2>
-    <p class="section-sub fade-in" style="margin:0 auto">No monthly subscription. Revenue comes from the spread — aligned with your success.</p>
+  <div class="tc">
+    <div class="section-eyebrow reveal">Transparent Pricing</div>
+    <h2 class="section-title reveal">No Hidden Fees. Ever.</h2>
+    <p class="section-sub reveal">No monthly subscription. We earn from the spread — so we win when you win.</p>
   </div>
   <div class="plans-grid">
-    <div class="plan-card fade-in">
+    <div class="plan-card reveal">
       <div class="plan-name">Demo</div>
-      <div class="plan-price">$0<span>/month</span></div>
-      <div class="plan-sub">Practice with virtual money</div>
-      <ul class="plan-features">
+      <div class="plan-price">$0<sub>/month</sub></div>
+      <div class="plan-tagline">Practice with virtual money, risk-free</div>
+      <ul class="plan-feats">
         <li>$10,000 virtual balance</li>
         <li>All 50+ markets access</li>
-        <li>Full chart tools + indicators</li>
-        <li>DBot automation</li>
+        <li>Full chart tools & indicators</li>
+        <li>DBot automation builder</li>
         <li>Copy trading (view only)</li>
         <li>Unlimited resets</li>
       </ul>
-      <button class="plan-cta plan-cta-outline" onclick="window.location.href='app.html'">Start Demo Free</button>
+      <button class="btn-plan-ol" onclick="location.href='app.html'">Start Demo Free</button>
     </div>
-    <div class="plan-card popular fade-in fade-in-delay-1">
-      <div class="plan-popular-badge">MOST POPULAR</div>
+    <div class="plan-card hot reveal delay-1">
+      <div class="plan-hot-tag">MOST POPULAR</div>
       <div class="plan-name">Live</div>
-      <div class="plan-price">$0<span>/month</span></div>
-      <div class="plan-sub">Trade with real money — deposit to start</div>
-      <ul class="plan-features">
+      <div class="plan-price">$0<sub>/month</sub></div>
+      <div class="plan-tagline">Real money — deposit from KES 500</div>
+      <ul class="plan-feats">
         <li>Min deposit KES 500</li>
-        <li>All 50+ markets access</li>
         <li>M-Pesa instant deposits</li>
-        <li>Copy trading active</li>
+        <li>All 50+ markets access</li>
+        <li>Copy trading (fully active)</li>
         <li>DBot live automation</li>
-        <li>Instant withdrawals</li>
-        <li>24/7 support</li>
+        <li>Instant M-Pesa withdrawals</li>
+        <li>24/7 live support</li>
       </ul>
-      <button class="plan-cta plan-cta-primary" onclick="window.location.href='app.html'">Open Live Account</button>
+      <button class="btn-plan-z" onclick="location.href='app.html'">Open Live Account</button>
     </div>
-    <div class="plan-card fade-in fade-in-delay-2">
+    <div class="plan-card reveal delay-2">
       <div class="plan-name">VIP</div>
-      <div class="plan-price"><span style="font-size:28px">Custom</span></div>
-      <div class="plan-sub">For high-volume traders</div>
-      <ul class="plan-features">
+      <div class="plan-price" style="font-size:32px;padding-top:6px">Custom</div>
+      <div class="plan-tagline">For high-volume professional traders</div>
+      <ul class="plan-feats">
         <li>Dedicated account manager</li>
         <li>Custom leverage options</li>
         <li>Zero withdrawal fees</li>
@@ -514,81 +886,59 @@ footer{background:var(--bg1);border-top:1px solid var(--border);padding:60px 5% 
         <li>Direct API access</li>
         <li>Strategy consultation</li>
       </ul>
-      <button class="plan-cta plan-cta-outline" onclick="alert('Contact support@zenithfx.io for VIP onboarding')">Contact VIP Desk</button>
+      <button class="btn-plan-ol" onclick="alert('Email: support@zenithfx.io for VIP onboarding')">Contact VIP Desk</button>
     </div>
   </div>
 </section>
 
-<!-- FAQ -->
-<section id="faq" style="background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-  <div style="text-align:center">
-    <div class="section-badge fade-in">FAQ</div>
-    <h2 class="section-title fade-in" style="margin:0 auto 12px">Frequently Asked Questions</h2>
-    <p class="section-sub fade-in" style="margin:0 auto">Everything you need to know about ZenithFX.</p>
+<!-- ══════ FAQ ══════ -->
+<section id="faq" class="faq-bg">
+  <div class="tc">
+    <div class="section-eyebrow reveal">FAQ</div>
+    <h2 class="section-title reveal">Common Questions</h2>
+    <p class="section-sub reveal">Everything you need to know about ZenithFX.</p>
   </div>
-  <div class="faq-wrap">
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">What is ZenithFX?<span class="faq-icon">+</span></div>
-      <div class="faq-a">ZenithFX is a professional online trading platform that lets you trade Synthetic Indices, Forex, Cryptocurrency, Commodities and Stock Indices. It's designed specifically for African traders with M-Pesa integration, local currency support and 24/7 synthetic markets.</div>
-    </div>
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">How do I deposit using M-Pesa?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Go to the Deposit page, select M-Pesa, enter your Safaricom phone number and the amount in KES (minimum KES 500). You'll receive an STK push on your phone — enter your M-Pesa PIN to confirm. Funds are credited to your ZenithFX account instantly, 24/7, with zero fees. Powered by Lipana.dev.</div>
-    </div>
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">What are Synthetic Indices?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Synthetic Indices are simulated markets generated by a provably fair algorithm. They're available 24/7 — including weekends and holidays — and are not affected by real-world news events. They include Volatility 10-100, Boom & Crash, Step Index and Jump Index. Great for practicing and trading at any hour.</div>
-    </div>
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">Is my money safe with ZenithFX?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Yes. ZenithFX uses 256-bit TLS encryption for all communications and transactions. Client funds are held in segregated accounts, separate from operational funds. We require KYC verification for all live accounts and comply with AML regulations.</div>
-    </div>
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">How quickly can I withdraw my profits?<span class="faq-icon">+</span></div>
-      <div class="faq-a">M-Pesa withdrawals are processed instantly — money arrives on your phone within minutes. Bank transfers take 1-3 business days. Crypto withdrawals take 30 minutes to 2 hours. All withdrawals require completed KYC Level 2. There are zero withdrawal fees.</div>
-    </div>
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">What is the minimum deposit?<span class="faq-icon">+</span></div>
-      <div class="faq-a">The minimum deposit is KES 500 (approximately $3.80 USD) via M-Pesa. For card payments the minimum is $10 USD. There is no minimum for the free demo account — you start with $10,000 virtual funds immediately on signup.</div>
-    </div>
-    <div class="faq-item fade-in" onclick="toggleFaq(this)">
-      <div class="faq-q">Can I automate my trading?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Yes! ZenithFX includes DBot — a visual drag-and-drop trading bot builder. No coding required. You can create strategies by combining blocks (market selection, conditions, stake, trade type, stop loss), backtest them on historical data, and run them 24/7 automatically.</div>
-    </div>
+  <div class="faq-list">
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">What is ZenithFX?<span class="faq-icon">+</span></div><div class="faq-a">ZenithFX is a professional online trading platform designed for African traders. Trade Synthetic Indices, Forex, Crypto, Commodities and Stock Indices. It features M-Pesa integration, 24/7 synthetic markets, DBot automation and copy trading.</div></div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">How do I deposit using M-Pesa?<span class="faq-icon">+</span></div><div class="faq-a">Go to the Deposit page, select M-Pesa, enter your Safaricom phone number and amount (min KES 500). You'll receive an STK push on your phone — enter your PIN to confirm. Funds are credited to your ZenithFX account instantly, 24/7, with zero fees. Powered by Lipana.dev.</div></div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">What are Synthetic Indices?<span class="faq-icon">+</span></div><div class="faq-a">Synthetic Indices are simulated markets generated by a provably fair random algorithm. Available 24/7 including weekends and holidays, they are not affected by real-world news events. They include Volatility 10–100, Boom & Crash 1000, Step Index and Jump Index.</div></div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">Is my money safe?<span class="faq-icon">+</span></div><div class="faq-a">Yes. ZenithFX uses 256-bit TLS encryption on all communications and transactions. Client funds are held in segregated accounts, separate from operational funds. Full KYC verification and AML compliance are enforced for all live accounts.</div></div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">How fast are withdrawals?<span class="faq-icon">+</span></div><div class="faq-a">M-Pesa withdrawals are processed instantly — money arrives on your phone within minutes. Bank transfers take 1–3 business days. Crypto withdrawals take 30 minutes to 2 hours. Zero withdrawal fees on all methods. KYC Level 2 required.</div></div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">What is the minimum deposit?<span class="faq-icon">+</span></div><div class="faq-a">The minimum deposit is KES 500 (approximately $3.80 USD) via M-Pesa. For card payments the minimum is $10 USD. There is no minimum for the free demo account — you start with $10,000 virtual funds immediately on signup.</div></div>
+    <div class="faq-item reveal" onclick="toggleFaq(this)"><div class="faq-q">Can I automate my trading?<span class="faq-icon">+</span></div><div class="faq-a">Yes! ZenithFX includes DBot — a visual drag-and-drop strategy builder. No coding required. Create strategies by combining blocks (market, conditions, stake, trade type, stop loss), backtest on historical data, and run 24/7 automatically even when you're offline.</div></div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <div class="section-badge fade-in">Get Started Today</div>
-  <h2 class="cta-title fade-in">Ready to Start Trading?</h2>
-  <p class="cta-sub fade-in">Join thousands of traders across Africa. Start with a free $10,000 demo account.<br>No credit card. No commitment. No risk.</p>
-  <div class="cta-btns fade-in">
-    <button class="btn-hero-primary" onclick="window.location.href='app.html'">Create Free Account →</button>
-    <button class="btn-hero-secondary" onclick="window.location.href='app.html'">Sign In</button>
+<!-- ══════ FINAL CTA ══════ -->
+<section class="cta-strip">
+  <div class="section-eyebrow reveal" style="margin-bottom:18px">Get Started Today</div>
+  <h2 class="cta-strip-title reveal">Ready to Start Trading?</h2>
+  <p class="cta-strip-sub reveal">Join thousands of traders across Africa.<br>Free $10,000 demo — no credit card, no commitment, no risk.</p>
+  <div class="cta-strip-btns reveal">
+    <button class="btn-cta-main" onclick="location.href='app.html'">Create Free Account →</button>
+    <button class="btn-cta-ghost" onclick="location.href='app.html'">Sign In</button>
   </div>
-  <div class="cta-trust fade-in">
-    <div class="trust-item"><span class="trust-icon">🔒</span>256-bit TLS Security</div>
-    <div class="trust-item"><span class="trust-icon">📱</span>M-Pesa Integrated</div>
-    <div class="trust-item"><span class="trust-icon">⚡</span>Instant Withdrawals</div>
-    <div class="trust-item"><span class="trust-icon">🎮</span>Free Demo Account</div>
-    <div class="trust-item"><span class="trust-icon">🌍</span>African Markets</div>
+  <div class="trust-row reveal">
+    <div class="trust-item"><span class="trust-ic">🔒</span> 256-bit TLS Security</div>
+    <div class="trust-item"><span class="trust-ic">📱</span> M-Pesa Integrated</div>
+    <div class="trust-item"><span class="trust-ic">⚡</span> Instant Withdrawals</div>
+    <div class="trust-item"><span class="trust-ic">🎮</span> Free Demo Account</div>
+    <div class="trust-item"><span class="trust-ic">🌍</span> African Markets</div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ══════ FOOTER ══════ -->
 <footer>
   <div class="footer-grid">
-    <div class="footer-brand">
-      <div class="logo">
-        <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--z),var(--z3));display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:16px;font-weight:800;color:#000">Z</div>
-        <span style="font-family:var(--font);font-size:18px;font-weight:800">Zenith<span style="color:var(--z)">FX</span></span>
+    <div>
+      <div class="nav-logo" style="margin-bottom:14px">
+        <div class="nav-logo-icon" style="width:34px;height:34px;font-size:16px">Z</div>
+        <div class="footer-brand-name">Zenith<span>FX</span></div>
       </div>
-      <p>Africa's premier online trading platform. Trade Synthetic Indices, Forex, Crypto and more. Deposit with M-Pesa. Start free.</p>
-      <div style="margin-top:16px;font-size:11px;color:var(--t3)">📧 support@zenithfx.io</div>
-      <div style="margin-top:4px;font-size:11px;color:var(--t3)">📍 Nairobi, Kenya</div>
+      <div class="footer-tagline">Africa's premier online trading platform. Trade Synthetic Indices, Forex, Crypto and more. M-Pesa deposits. Start free.</div>
+      <div class="footer-contact">📧 support@zenithfx.io<br>📍 Nairobi, Kenya</div>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
       <h4>Platform</h4>
       <a href="app.html">Trader's Hub</a>
       <a href="app.html">Markets</a>
@@ -596,7 +946,7 @@ footer{background:var(--bg1);border-top:1px solid var(--border);padding:60px 5% 
       <a href="app.html">DBot</a>
       <a href="app.html">Trade Journal</a>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
       <h4>Company</h4>
       <a href="#">About Us</a>
       <a href="#">Affiliate Program</a>
@@ -604,7 +954,7 @@ footer{background:var(--bg1);border-top:1px solid var(--border);padding:60px 5% 
       <a href="#">Careers</a>
       <a href="#">Blog</a>
     </div>
-    <div class="footer-col">
+    <div class="foot-col">
       <h4>Legal</h4>
       <a href="#">Terms of Service</a>
       <a href="#">Privacy Policy</a>
@@ -615,163 +965,168 @@ footer{background:var(--bg1);border-top:1px solid var(--border);padding:60px 5% 
   </div>
   <div class="footer-bottom">
     <p>© 2025 ZenithFX. All rights reserved.</p>
-    <div class="footer-social">
-      <a href="#">𝕏</a>
-      <a href="#">📘</a>
-      <a href="#">📸</a>
-      <a href="#">✈</a>
-      <a href="#">▶</a>
+    <div class="f-social">
+      <a href="#" title="Twitter/X">𝕏</a>
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Instagram">📸</a>
+      <a href="#" title="Telegram">✈</a>
+      <a href="#" title="YouTube">▶</a>
     </div>
   </div>
-  <div class="footer-disclaimer">
-    <strong>Risk Warning:</strong> Trading binary options, forex and CFDs involves significant risk of loss and may not be suitable for all investors. The value of your investments can fall as well as rise, and you may lose more than you invest. Past performance is not indicative of future results. Synthetic Indices are simulated markets and do not represent real-world assets. Please ensure you fully understand the risks involved and seek independent financial advice if necessary. ZenithFX does not provide investment advice.
-  </div>
+  <div class="footer-disc"><strong>Risk Warning:</strong> Trading binary options, forex and CFDs involves significant risk of loss and may not be suitable for all investors. The value of your investments can fall as well as rise and you may lose more than you invest. Past performance is not indicative of future results. Synthetic Indices are simulated markets and do not represent real-world assets. Please ensure you fully understand the risks involved and seek independent financial advice if necessary. ZenithFX does not provide investment advice. Capital at risk.</div>
 </footer>
 
+<!-- FLOAT CTA -->
+<div id="float-btn">
+  <button onclick="location.href='app.html'">Start Trading →</button>
+</div>
+
 <script>
-// NAV SCROLL
+'use strict';
+
+// ── NAV SCROLL ──
 window.addEventListener('scroll',()=>{
-  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);
+  document.getElementById('nav').classList.toggle('solid',scrollY>40);
+  document.getElementById('float-btn').style.display=scrollY>500?'block':'none';
 });
 
-// MOBILE MENU
-function toggleMobileMenu(){
-  document.getElementById('mobileMenu').classList.toggle('open');
-}
-document.querySelectorAll('.mobile-menu a').forEach(a=>{
-  a.addEventListener('click',()=>document.getElementById('mobileMenu').classList.remove('open'));
-});
+// ── MOBILE MENU ──
+function toggleMob(){document.getElementById('mob-menu').classList.toggle('show');}
+function closeMob(){document.getElementById('mob-menu').classList.remove('show');}
 
-// HERO CHART
-const heroCanvas=document.getElementById('hero-canvas');
-let heroData=[],heroPrice=1243.87;
-function initHeroChart(){
+// ── PREVIEW CHART ──
+let pData=[],pPrice=1243.87;
+function initChart(){
   let p=1243.87;
-  for(let i=0;i<100;i++){p+=((Math.random()-.48)*.15);heroData.push(Math.max(.01,p));}
+  for(let i=0;i<100;i++){p=Math.max(.01,p+(Math.random()-.48)*.18);pData.push(p);}
   setInterval(()=>{
-    heroPrice+=((Math.random()-.48)*.12);
-    heroData.push(Math.max(.01,heroPrice));
-    if(heroData.length>150)heroData.shift();
-    const el=document.getElementById('hero-price');
-    if(el)el.textContent=heroPrice.toFixed(2);
-    drawHeroChart();
-  },1000);
-  drawHeroChart();
+    pPrice=Math.max(.01,pPrice+(Math.random()-.48)*.14);
+    pData.push(pPrice);if(pData.length>160)pData.shift();
+    const el=document.getElementById('preview-price');
+    if(el)el.textContent=pPrice.toFixed(2);
+    drawChart();
+  },900);
+  drawChart();
 }
-function drawHeroChart(){
-  const canvas=heroCanvas;if(!canvas)return;
-  const ctx=canvas.getContext('2d');
-  const W=canvas.offsetWidth||800,H=220;
-  canvas.width=W;canvas.height=H;
-  const data=heroData;if(!data.length)return;
-  const mn=Math.min(...data),mx=Math.max(...data);
-  const range=(mx-mn)||1,lo=mn-range*.1,hi=mx+range*.2;
-  const tX=i=>(i/(data.length-1))*W;
-  const tY=v=>H-((v-lo)/(hi-lo))*H;
+function drawChart(){
+  const c=document.getElementById('preview-canvas');if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=c.parentElement.offsetWidth||900,H=240;
+  c.width=W;c.height=H;
+  const d=pData;if(!d.length)return;
+  const mn=Math.min(...d),mx=Math.max(...d);
+  const r=(mx-mn)||1,lo=mn-r*.1,hi=mx+r*.2;
+  const tx=i=>(i/(d.length-1))*W;
+  const ty=v=>H-((v-lo)/(hi-lo))*H;
   ctx.clearRect(0,0,W,H);
-  ctx.strokeStyle='rgba(255,255,255,0.03)';ctx.lineWidth=1;
+  // grid
+  ctx.strokeStyle='rgba(255,255,255,0.04)';ctx.lineWidth=1;
   for(let i=1;i<5;i++){const y=H*i/5;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  for(let i=1;i<9;i++){const x=W*i/9;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  // gradient fill
   const g=ctx.createLinearGradient(0,0,0,H);
-  g.addColorStop(0,'rgba(0,229,180,0.18)');g.addColorStop(1,'rgba(0,229,180,0)');
-  ctx.beginPath();ctx.moveTo(tX(0),tY(data[0]));
-  data.forEach((v,i)=>{if(i>0)ctx.lineTo(tX(i),tY(v));});
-  ctx.lineTo(tX(data.length-1),H);ctx.lineTo(0,H);ctx.closePath();
+  g.addColorStop(0,'rgba(0,240,190,.2)');g.addColorStop(1,'rgba(0,240,190,0)');
+  ctx.beginPath();ctx.moveTo(tx(0),ty(d[0]));
+  d.forEach((v,i)=>{if(i>0)ctx.lineTo(tx(i),ty(v));});
+  ctx.lineTo(tx(d.length-1),H);ctx.lineTo(0,H);ctx.closePath();
   ctx.fillStyle=g;ctx.fill();
-  ctx.beginPath();ctx.moveTo(tX(0),tY(data[0]));
-  data.forEach((v,i)=>{if(i>0)ctx.lineTo(tX(i),tY(v));});
-  ctx.strokeStyle='#00e5b4';ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
-  const lx=tX(data.length-1),ly=tY(heroPrice);
-  ctx.beginPath();ctx.arc(lx,ly,5,0,Math.PI*2);ctx.fillStyle='rgba(0,229,180,0.25)';ctx.fill();
-  ctx.beginPath();ctx.arc(lx,ly,3,0,Math.PI*2);ctx.fillStyle='#00e5b4';ctx.fill();
+  // line
+  ctx.beginPath();ctx.moveTo(tx(0),ty(d[0]));
+  d.forEach((v,i)=>{if(i>0)ctx.lineTo(tx(i),ty(v));});
+  ctx.strokeStyle='#00f0be';ctx.lineWidth=2;ctx.lineJoin='round';ctx.stroke();
+  // last dot
+  const lx=tx(d.length-1),ly=ty(pPrice);
+  ctx.beginPath();ctx.arc(lx,ly,6,0,Math.PI*2);ctx.fillStyle='rgba(0,240,190,.2)';ctx.fill();
+  ctx.beginPath();ctx.arc(lx,ly,3.5,0,Math.PI*2);ctx.fillStyle='#00f0be';ctx.fill();
+  // dashed price line
+  ctx.setLineDash([4,5]);ctx.beginPath();ctx.moveTo(0,ly);ctx.lineTo(W-74,ly);
+  ctx.strokeStyle='rgba(0,240,190,.25)';ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+  // price box
+  ctx.fillStyle='rgba(0,240,190,.9)';ctx.fillRect(W-72,ly-10,70,20);
+  ctx.fillStyle='#000';ctx.font='bold 10px DM Mono,monospace';ctx.textAlign='center';
+  ctx.fillText(pPrice.toFixed(2),W-37,ly+4);ctx.textAlign='left';
 }
-initHeroChart();
+initChart();
 
-// TICKER
-const TICKS=[
-  {id:'V10',price:1243.87,chg:0.12},{id:'EURUSD',price:1.0847,chg:-0.08},{id:'BTCUSD',price:67432,chg:3.21},
-  {id:'XAUUSD',price:2347.80,chg:0.34},{id:'V75',price:2934.11,chg:-1.23},{id:'ETHUSD',price:3421.50,chg:1.87},
-  {id:'GBPUSD',price:1.2634,chg:0.12},{id:'USOIL',price:82.15,chg:1.12},{id:'BOOM1000',price:5678.32,chg:0.56},
-  {id:'SP500',price:5248.34,chg:0.67},{id:'USDKES',price:131.40,chg:0.23},{id:'SOLUSD',price:187.45,chg:4.12},
+// ── LIVE TICKER ──
+const TDATA=[
+  {s:'V10',p:1243.87,c:.12},{s:'EURUSD',p:1.0847,c:-.08},{s:'BTCUSD',p:67432,c:3.21},
+  {s:'XAUUSD',p:2347.8,c:.34},{s:'V75',p:2934.11,c:-1.23},{s:'ETHUSD',p:3421.5,c:1.87},
+  {s:'GBPUSD',p:1.2634,c:.12},{s:'USOIL',p:82.15,c:1.12},{s:'BOOM1000',p:5678.32,c:.56},
+  {s:'SP500',p:5248.34,c:.67},{s:'USDKES',p:131.4,c:.23},{s:'SOLUSD',p:187.45,c:4.12},
 ];
-function buildHeroTicker(){
-  const items=TICKS.concat(TICKS).map(t=>`<span class="ticker-item"><span class="ti-sym">${t.id}</span><span class="ti-px">${t.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</span><span class="ti-chg ${t.chg>=0?'ti-up':'ti-dn'}">${t.chg>=0?'▲':'▼'}${Math.abs(t.chg).toFixed(2)}%</span></span>`).join('');
-  document.getElementById('hero-ticker').innerHTML=items;
-  setInterval(()=>{
-    TICKS.forEach(t=>{t.price=Math.max(.001,t.price+(Math.random()-.49)*t.price*.001);t.chg=parseFloat(((Math.random()-.45)*2).toFixed(2));});
-    document.getElementById('hero-ticker').innerHTML=TICKS.concat(TICKS).map(t=>`<span class="ticker-item"><span class="ti-sym">${t.id}</span><span class="ti-px">${t.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</span><span class="ti-chg ${t.chg>=0?'ti-up':'ti-dn'}">${t.chg>=0?'▲':'▼'}${Math.abs(t.chg).toFixed(2)}%</span></span>`).join('');
-  },2500);
+function buildTicker(){
+  const items=TDATA.concat(TDATA).map(t=>`<span class="t-item"><span class="t-sym">${t.s}</span><span class="t-px">${t.p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</span><span class="${t.c>=0?'t-up':'t-dn'}">${t.c>=0?'▲':'▼'}${Math.abs(t.c).toFixed(2)}%</span></span>`).join('');
+  document.getElementById('ticker').innerHTML=items;
 }
-buildHeroTicker();
+buildTicker();
+setInterval(()=>{
+  TDATA.forEach(t=>{t.p=Math.max(.001,t.p+(Math.random()-.49)*t.p*.001);t.c=+((Math.random()-.45)*2).toFixed(2);});
+  buildTicker();
+},2500);
 
-// MARKETS CARDS DATA
-const MARKET_DATA={
-  synthetic:[{id:'V10',name:'Volatility 10 (1s)',price:1243.87,chg:0.12,icon:'🎲'},{id:'V25',name:'Volatility 25 (1s)',price:3847.21,chg:-0.34,icon:'🎲'},{id:'V50',name:'Volatility 50',price:7823.45,chg:0.87,icon:'🎲'},{id:'V75',name:'Volatility 75',price:2934.11,chg:-1.23,icon:'🎲'},{id:'V100',name:'Volatility 100',price:9012.77,chg:2.14,icon:'🎲'},{id:'BOOM1000',name:'Boom 1000',price:5678.32,chg:0.56,icon:'💥'},{id:'CRASH1000',name:'Crash 1000',price:4321.89,chg:-0.78,icon:'💫'},{id:'STEP',name:'Step Index',price:8234.56,chg:0.03,icon:'📶'}],
-  forex:[{id:'EURUSD',name:'Euro/USD',price:1.0847,chg:0.12,icon:'💱'},{id:'GBPUSD',name:'GBP/USD',price:1.2634,chg:-0.08,icon:'💱'},{id:'USDJPY',name:'USD/JPY',price:149.32,chg:0.45,icon:'💱'},{id:'USDKES',name:'USD/KES',price:131.40,chg:0.23,icon:'🇰🇪'},{id:'GBPKES',name:'GBP/KES',price:164.78,chg:-0.11,icon:'🇰🇪'},{id:'EURKES',name:'EUR/KES',price:141.85,chg:0.05,icon:'🇰🇪'}],
-  crypto:[{id:'BTCUSD',name:'Bitcoin/USD',price:67432,chg:3.21,icon:'₿'},{id:'ETHUSD',name:'Ethereum/USD',price:3421.50,chg:1.87,icon:'Ξ'},{id:'SOLUSD',name:'Solana/USD',price:187.45,chg:4.12,icon:'◎'},{id:'BNBUSD',name:'BNB/USD',price:412.30,chg:-0.92,icon:'🔶'},{id:'XRPUSD',name:'Ripple/USD',price:0.623,chg:-1.34,icon:'✕'}],
-  commodities:[{id:'XAUUSD',name:'Gold/USD',price:2347.80,chg:0.34,icon:'🥇'},{id:'XAGUSD',name:'Silver/USD',price:29.45,chg:-0.22,icon:'🥈'},{id:'USOIL',name:'Crude Oil WTI',price:82.15,chg:1.12,icon:'🛢'},{id:'NATGAS',name:'Natural Gas',price:2.19,chg:-2.44,icon:'🔥'}],
-  indices:[{id:'SP500',name:'S&P 500',price:5248.34,chg:0.67,icon:'🇺🇸'},{id:'NASDAQ',name:'NASDAQ 100',price:18234.56,chg:1.23,icon:'📊'},{id:'DAX',name:'DAX 40',price:17823.45,chg:-0.34,icon:'🇩🇪'},{id:'NSE20',name:'NSE 20 Index',price:1872.45,chg:-0.12,icon:'🇰🇪'}],
+// ── MARKETS GRID ──
+const MK={
+  synthetic:[{i:'🎲',s:'V10',n:'Volatility 10 (1s)',p:1243.87,c:.12},{i:'🎲',s:'V25',n:'Volatility 25 (1s)',p:3847.21,c:-.34},{i:'🎲',s:'V50',n:'Volatility 50',p:7823.45,c:.87},{i:'🎲',s:'V75',n:'Volatility 75',p:2934.11,c:-1.23},{i:'🎲',s:'V100',n:'Volatility 100',p:9012.77,c:2.14},{i:'💥',s:'BOOM1000',n:'Boom 1000',p:5678.32,c:.56},{i:'💫',s:'CRASH1000',n:'Crash 1000',p:4321.89,c:-.78},{i:'📶',s:'STEP',n:'Step Index',p:8234.56,c:.03}],
+  forex:[{i:'💱',s:'EURUSD',n:'Euro/USD',p:1.0847,c:.12},{i:'💱',s:'GBPUSD',n:'GBP/USD',p:1.2634,c:-.08},{i:'💱',s:'USDJPY',n:'USD/JPY',p:149.32,c:.45},{i:'🇰🇪',s:'USDKES',n:'USD/KES',p:131.4,c:.23},{i:'🇰🇪',s:'GBPKES',n:'GBP/KES',p:164.78,c:-.11},{i:'🇰🇪',s:'EURKES',n:'EUR/KES',p:141.85,c:.05}],
+  crypto:[{i:'₿',s:'BTCUSD',n:'Bitcoin/USD',p:67432,c:3.21},{i:'Ξ',s:'ETHUSD',n:'Ethereum/USD',p:3421.5,c:1.87},{i:'◎',s:'SOLUSD',n:'Solana/USD',p:187.45,c:4.12},{i:'🔶',s:'BNBUSD',n:'BNB/USD',p:412.3,c:-.92},{i:'✕',s:'XRPUSD',n:'Ripple/USD',p:.623,c:-1.34}],
+  commodities:[{i:'🥇',s:'XAUUSD',n:'Gold/USD',p:2347.8,c:.34},{i:'🥈',s:'XAGUSD',n:'Silver/USD',p:29.45,c:-.22},{i:'🛢',s:'USOIL',n:'Crude Oil WTI',p:82.15,c:1.12},{i:'🔥',s:'NATGAS',n:'Natural Gas',p:2.19,c:-2.44}],
+  indices:[{i:'🇺🇸',s:'SP500',n:'S&P 500',p:5248.34,c:.67},{i:'📊',s:'NASDAQ',n:'NASDAQ 100',p:18234.56,c:1.23},{i:'🇩🇪',s:'DAX',n:'DAX 40',p:17823.45,c:-.34},{i:'🇰🇪',s:'NSE20',n:'NSE 20 Index',p:1872.45,c:-.12}],
 };
-function renderMarketCards(cat='all'){
-  const cards=document.getElementById('markets-cards');
-  let items=[];
-  if(cat==='all'){Object.values(MARKET_DATA).forEach(arr=>items=items.concat(arr));}
-  else items=MARKET_DATA[cat]||[];
-  cards.innerHTML=items.map(m=>`<div class="market-card" onclick="window.location.href='app.html'"><div class="mc-icon">${m.icon}</div><div class="mc-id">${m.id}</div><div class="mc-name">${m.name}</div><div class="mc-price">${m.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</div><div class="mc-chg ${m.chg>=0?'up':'dn'}">${m.chg>=0?'▲':'▼'} ${Math.abs(m.chg).toFixed(2)}%</div></div>`).join('');
+let currentCat='all';
+function renderMk(cat){
+  currentCat=cat;
+  let items=cat==='all'?Object.values(MK).flat():MK[cat]||[];
+  document.getElementById('mk-grid').innerHTML=items.map(m=>`
+    <div class="mkc" onclick="location.href='app.html'">
+      <div class="mkc-icon">${m.i}</div>
+      <div class="mkc-id">${m.s}</div>
+      <div class="mkc-name">${m.n}</div>
+      <div class="mkc-price">${m.p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+      <div class="mkc-chg ${m.c>=0?'up':'dn'}">${m.c>=0?'▲':'▼'} ${Math.abs(m.c).toFixed(2)}%</div>
+    </div>`).join('');
   // Live updates
   setInterval(()=>{
-    items.forEach(m=>{m.price=Math.max(.001,m.price+(Math.random()-.49)*m.price*.001);m.chg=parseFloat(((Math.random()-.45)*2).toFixed(2));});
-    document.querySelectorAll('.market-card').forEach((card,i)=>{
+    items.forEach(m=>{m.p=Math.max(.001,m.p+(Math.random()-.49)*m.p*.001);m.c=+((Math.random()-.45)*2).toFixed(2);});
+    document.querySelectorAll('.mkc').forEach((el,i)=>{
       if(!items[i])return;
       const m=items[i];
-      const px=card.querySelector('.mc-price');const chg=card.querySelector('.mc-chg');
-      if(px)px.textContent=m.price.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-      if(chg){chg.textContent=(m.chg>=0?'▲':'▼')+' '+Math.abs(m.chg).toFixed(2)+'%';chg.className='mc-chg '+(m.chg>=0?'up':'dn');}
+      const px=el.querySelector('.mkc-price');const ch=el.querySelector('.mkc-chg');
+      if(px)px.textContent=m.p.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+      if(ch){ch.textContent=(m.c>=0?'▲':'▼')+' '+Math.abs(m.c).toFixed(2)+'%';ch.className='mkc-chg '+(m.c>=0?'up':'dn');}
     });
-  },2500);
+  },2800);
 }
-renderMarketCards();
-function filterCards(e,cat){
-  document.querySelectorAll('.mk-tab').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-  renderMarketCards(cat);
-}
-
-// MPESA WIDGET
-function setLpAmt(v){const e=document.getElementById('lp-amt');if(e)e.value=v;lpCalc();}
-function lpCalc(){
-  const a=parseFloat(document.getElementById('lp-amt')?.value)||0;
-  const el=document.getElementById('lp-conv');
-  if(el)el.textContent=a>0?`≈ $${(a/131.40).toFixed(2)} USD at KES 131.40 per dollar`:'≈ Enter amount to see USD equivalent';
-}
-function lpSubmit(){
-  const ph=document.getElementById('lp-phone')?.value;
-  const a=parseFloat(document.getElementById('lp-amt')?.value)||0;
-  if(!ph){alert('Please enter your M-Pesa phone number');return;}
-  if(a<500){alert('Minimum deposit is KES 500');return;}
-  window.location.href='app.html';
+renderMk('all');
+function filterMk(e,cat){
+  document.querySelectorAll('.mk-btn').forEach(b=>b.classList.remove('on'));
+  e.target.classList.add('on');
+  renderMk(cat);
 }
 
-// FAQ
+// ── MPESA WIDGET ──
+function setAmt(v){const e=document.getElementById('mp-amt');if(e)e.value=v;updateConv();}
+function updateConv(){
+  const a=parseFloat(document.getElementById('mp-amt')?.value)||0;
+  const el=document.getElementById('conv-line');
+  if(el)el.textContent=a>0?`≈ $${(a/131.4).toFixed(2)} USD at KES 131.40 per dollar`:'≈ Enter amount to see USD equivalent';
+}
+function mpesaSubmit(){
+  const ph=document.getElementById('mp-ph')?.value;
+  const a=parseFloat(document.getElementById('mp-amt')?.value)||0;
+  if(!ph){alert('Please enter your M-Pesa phone number.');return;}
+  if(a<500){alert('Minimum deposit is KES 500.');return;}
+  location.href='app.html';
+}
+
+// ── FAQ ──
 function toggleFaq(el){el.classList.toggle('open');}
 
-// SCROLL ANIMATIONS
-const observer=new IntersectionObserver(entries=>{
+// ── SCROLL REVEAL ──
+const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
-},{threshold:.15});
-document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-</script>
-
-<!-- FLOATING CTA -->
-<div id="float-cta" style="display:none;position:fixed;bottom:24px;right:24px;z-index:200">
-  <button onclick="window.location.href='app.html'" style="padding:14px 24px;border-radius:50px;background:linear-gradient(135deg,#00e5b4,#00c49a);color:#000;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(0,229,180,.45);transition:.2s;letter-spacing:.3px">
-    Start Trading →
-  </button>
-</div>
-<script>
-window.addEventListener('scroll',()=>{
-  const el=document.getElementById('float-cta');
-  if(el) el.style.display=window.scrollY>400?'block':'none';
-});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 </script>
 </body>
 </html>
